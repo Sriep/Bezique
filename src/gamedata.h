@@ -38,6 +38,7 @@ public:
     Q_INVOKABLE void cardPlayed(int index, bool melded = false);
     Q_INVOKABLE void humanMeld(bool meldMade, int index = NO_MELD, bool meldRow = false);
     Q_INVOKABLE void finishTrick();
+    Q_INVOKABLE bool isGameInProgress();
 
     Player *getHumanPlayer() const;
     void setHumanPlayer(Player *value);
@@ -69,7 +70,7 @@ signals:
     void trickFinished();
     void startEndgame();
     void handOver();
-    void gameOver();
+    void gameOver(bool playerWon);
     void leadCardPlayed();
     void followedToTrick();
     void faceCardChanged();
@@ -99,6 +100,7 @@ private:
     void init();
     void checkSeven(Card* aisCard, Player* activePlayer);
     void ResetBoardForEndgame();
+    void resetGameData();
 
     // qml properties
     Card* faceCard = NULL;

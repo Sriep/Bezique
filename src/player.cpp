@@ -112,6 +112,13 @@ void Player::write(QJsonObject &json) const
     unseen.write(json);
 }
 
+void Player::resetData()
+{
+    setScore(0);
+    hand->clearCards();
+    unseen.reset();
+}
+
 Card* Player::playFirstCard(bool isEndgame)
 {
     if (!isEndgame)

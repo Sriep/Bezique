@@ -19,7 +19,6 @@ RowLayout {
 
     StatsColumn {
         Layout.alignment: Qt.AlignTop
-        //color: root.backColor;
         width: root.cardWidth; height: root.cardHeight;
     }
 

@@ -32,6 +32,13 @@ void BeziqueHand::clearCards(QList<Card *> c)
     }
 }
 
+void BeziqueHand::clearCards()
+{
+    clearCards(cards);
+    clearCards(hiddedCards);
+    clearCards(meldedCards);
+}
+
 bool BeziqueHand::isEmpty() const
 {
     for (int i = 0; i < cards.size(); ++i) {
@@ -978,17 +985,35 @@ void BeziqueHand::write(QJsonObject &json) const
 
 QQmlListProperty<Card> BeziqueHand::getCards()
 {
-    return QQmlListProperty<Card>(this, 0, &BeziqueHand::appendCard, 0, 0, 0);
+    return QQmlListProperty<Card>(this
+                                    , 0 // void *data
+                                    , &BeziqueHand::appendCard
+                                    , &BeziqueHand::countCard
+                                    , &BeziqueHand::atCard
+                                    , &BeziqueHand::clearCard
+                                    );
 }
 
 QQmlListProperty<Card> BeziqueHand::getMeldedCards()
 {
-    return QQmlListProperty<Card>(this, 0, &BeziqueHand::appendMeldedCard, 0, 0, 0);
+    return QQmlListProperty<Card>(this
+                                    , 0 // void *data
+                                    , &BeziqueHand::appendMeldedCard
+                                    , &BeziqueHand::countMeldedCard
+                                    , &BeziqueHand::atMeldedCard
+                                    , &BeziqueHand::clearMeldedCard
+                                    );
 }
 
 QQmlListProperty<Card> BeziqueHand::getHiddenCards()
 {
-    return QQmlListProperty<Card>(this, 0, &BeziqueHand::appendHiddenCard, 0, 0, 0);
+    return QQmlListProperty<Card>(this
+                                    , 0 // void *data
+                                    , &BeziqueHand::appendHiddenCard
+                                    , &BeziqueHand::countHiddenCard
+                                    , &BeziqueHand::atHiddenCard
+                                    , &BeziqueHand::clearHiddenCard
+                                    );
 }
 
 const QList<Card*> BeziqueHand::cardList() const
@@ -1029,6 +1054,24 @@ void BeziqueHand::appendCard(QQmlListProperty<Card> *list, Card *card)
     }
 }
 
+int BeziqueHand::countCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->cards.count();
+}
+
+Card *BeziqueHand::atCard(QQmlListProperty<Card> *list, int index)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->cards[index];
+}
+
+void BeziqueHand::clearCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    hand->cards.clear();
+}
+
 void BeziqueHand::appendMeldedCard(QQmlListProperty<Card> *list, Card *card)
 {
     BeziqueHand *hand = qobject_cast<BeziqueHand*>(list->object);
@@ -1038,6 +1081,24 @@ void BeziqueHand::appendMeldedCard(QQmlListProperty<Card> *list, Card *card)
     }
 }
 
+int BeziqueHand::countMeldedCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->meldedCards.count();
+}
+
+Card *BeziqueHand::atMeldedCard(QQmlListProperty<Card> *list, int index)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->meldedCards[index];
+}
+
+void BeziqueHand::clearMeldedCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    hand->meldedCards.clear();
+}
+
 void BeziqueHand::appendHiddenCard(QQmlListProperty<Card> *list, Card *card)
 {
     BeziqueHand *hand = qobject_cast<BeziqueHand*>(list->object);
@@ -1045,6 +1106,24 @@ void BeziqueHand::appendHiddenCard(QQmlListProperty<Card> *list, Card *card)
         card->setParentItem(hand);
         hand->hiddedCards.append(card);
     }
+}
+
+int BeziqueHand::countHiddenCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->hiddedCards.count();
+}
+
+Card *BeziqueHand::atHiddenCard(QQmlListProperty<Card> *list, int index)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    return hand->hiddedCards[index];
+}
+
+void BeziqueHand::clearHiddenCard(QQmlListProperty<Card> *list)
+{
+    BeziqueHand *hand = qobject_cast<BeziqueHand *>(list->object);
+    hand->hiddedCards.clear();
 }
 
 

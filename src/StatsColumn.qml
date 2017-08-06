@@ -20,6 +20,7 @@ ColumnLayout {
   RowLayout {
       Layout.alignment: Qt.AlignVCenter
       width: parent.width; height: root.cardHeight/3;
+      spacing: 10
       Rectangle {
           color: root.backColor;
           width: 10; height: root.cardHeight/3;

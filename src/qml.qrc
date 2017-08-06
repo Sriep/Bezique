@@ -107,7 +107,7 @@
         <file>HumanMeldRow.qml</file>
         <file>AiCardImage.qml</file>
         <file>content/gfx/onePixelGreen.png</file>
-        <file>Page2.qml</file>
+        <file>BeziqueView.qml</file>
         <file>StatsColumn.qml</file>
         <file>content/gfx/toolbar.png</file>
         <file>content/gfx/textinput.png</file>
@@ -120,5 +120,9 @@
         <file>content/gfx/button_default.png</file>
         <file>AndroidDelegate.qml</file>
         <file>Options.qml</file>
+        <file>content/gfx/drawer@4x.png</file>
+        <file>content/gfx/drawerW@4x.png</file>
+        <file>content/gfx/menu@4x.png</file>
+        <file>content/gfx/menuW@4x.png</file>
     </qresource>
 </RCC>

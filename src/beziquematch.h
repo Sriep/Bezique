@@ -30,8 +30,8 @@ public:
     }*/
 
     BeziqueMatch(bool restart = false, QQuickItem *parent = 0);
-    bool loadMatch(SaveFormat saveFormat = Json);
-    bool saveMatch(SaveFormat saveFormat = Json) const;
+    bool loadMatch();
+    bool saveMatch() const;
 
     QString getBottomName() const;
     void setBottomName(const QString &value);

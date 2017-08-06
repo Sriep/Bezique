@@ -105,6 +105,7 @@ void GameData::setFaceCard(Card *value)
 
 void GameData::startNewGame()
 {
+    resetGameData();
     game.start();
 }
 
@@ -177,7 +178,7 @@ void GameData::followToTrick()
 
 void GameData::cardPlayed(int index, bool melded)
 {
-    if (!activePlayer->cardExists(index, melded))
+        if (!activePlayer->cardExists(index, melded))
         emit waitingForCard();
     else if (isPlayFirstCard)
     {
@@ -283,13 +284,18 @@ void GameData::finishTrick()
     beziqueMatch->trickOver();
 
     if (activePlayer->won())
-        emit gameOver();
+        emit gameOver(!activePlayer->isAi());
     else if (getDeck()->empty())
     {
         ResetBoardForEndgame();
     }
     else
         emit melded();
+}
+
+bool GameData::isGameInProgress()
+{
+    return game.isRunning();
 }
 
 void GameData::ResetBoardForEndgame()
@@ -299,6 +305,15 @@ void GameData::ResetBoardForEndgame()
     faceCard->clearCard();
     isEndgame = true;
     emit startEndgame();
+}
+
+void GameData::resetGameData()
+{
+    meldedSeven = false;
+    aiPlayer->resetData();
+    emit changedAiPlayer();
+    humanPlayer->resetData();
+    emit changedHumanPlayer();
 }
 
 void GameData::setBeziqueMatch(BeziqueMatch *value)
@@ -361,12 +376,12 @@ void GameData::scoreEndTrick()
         activePlayer->incScore(10);
 
     if (activePlayer->won())
-        emit gameOver();
+        emit gameOver(!activePlayer->isAi());
     if (activePlayer->handEmpty())
     {
         activePlayer->incScore(10);
         if (activePlayer->won())
-            emit gameOver();
+            emit gameOver(!activePlayer->isAi());
         else
             emit handOver();
     }
@@ -447,7 +462,6 @@ void GameData::write(QJsonObject &json) const
         json["gameState"] = GS_ENDGAME;
     else
         json["gameState"] = GS_EARLY_GAME;
-
 }
 
 

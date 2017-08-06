@@ -29,7 +29,8 @@ public:
     virtual ~BeziqueHand();
 
     void resetCards(QList<int> newHand);
-    void clearCards(QList<Card*> c);
+    static void clearCards(QList<Card*> c);
+    void clearCards();
     bool isEmpty() const;
     void addCard(int cardId);
     const Card *peek(int index);
@@ -48,6 +49,7 @@ public:
     QQmlListProperty<Card> getCards();
     QQmlListProperty<Card> getMeldedCards();
     QQmlListProperty<Card> getHiddenCards();
+
     const QList<Card*> cardList() const;
     const QList<Card*> meldedCardList() const;
 
@@ -84,9 +86,21 @@ private:
     void moveHiddenMelded(int index);
     void moveMeldedHidden(int index);
 
-    static void appendCard(QQmlListProperty<Card> *list, Card *card);
+    static void appendCard(QQmlListProperty<Card> *list, Card *card);      
+    static int countCard(QQmlListProperty<Card> *list);
+    static Card *atCard(QQmlListProperty<Card> *list, int index);
+    static void clearCard(QQmlListProperty<Card> *list);
+
     static void appendMeldedCard(QQmlListProperty<Card> *list, Card *card);
+    static int countMeldedCard(QQmlListProperty<Card> *list);
+    static Card* atMeldedCard(QQmlListProperty<Card> *list, int index);
+    static void clearMeldedCard(QQmlListProperty<Card> *list);
+
     static void appendHiddenCard(QQmlListProperty<Card> *list, Card *card);
+    static int countHiddenCard(QQmlListProperty<Card> *list);
+    static Card *atHiddenCard(QQmlListProperty<Card> *list, int index);
+    static void clearHiddenCard(QQmlListProperty<Card> *list);
+
     QList<Card*> cards;
     QList<Card*> hiddedCards;
     QList<Card*> meldedCards;

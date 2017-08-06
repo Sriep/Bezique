@@ -25,7 +25,6 @@ QList<int> BeziqueDeck::dealHand()
     QList<int> hand;
     for ( unsigned int i = 0 ; i < beziqueHandSize ; i++ )
     {
-       // hand.push_back(Card::intToCard(deck.back()));
         hand.push_back(deck.back());
         deck.pop_back();
     }
@@ -34,7 +33,6 @@ QList<int> BeziqueDeck::dealHand()
 
 int BeziqueDeck::peekBottom() const
 {
-    //return Card::intToCard(deck.front());
     return deck.front();
 }
 
@@ -45,7 +43,6 @@ void BeziqueDeck::swapBottom(int id)
 
 int BeziqueDeck::dealTop()
 {
-   // Card card = Card::intToCard(deck.back());
     int card = deck.back();
     deck.pop_back();
     return card;
@@ -84,6 +81,7 @@ void BeziqueDeck::write(QJsonObject &json) const
 
 void BeziqueDeck::stackDeck()
 {
+    deck.clear();
     deck.reserve(beziqueDeckSize);
     for ( unsigned int i = 0 ; i < beziqueDeckSize ; i++ )
     {

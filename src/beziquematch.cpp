@@ -3,9 +3,9 @@
 #include <QJsonDocument>
 #include <QIODevice>
 #include <QJsonObject>
+#include <QSettings>
 
 #include "beziquematch.h"
-
 
 BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
     : QQuickItem(parent)
@@ -32,9 +32,9 @@ void BeziqueMatch::init()
 */
 }
 
-bool BeziqueMatch::loadMatch(SaveFormat saveFormat)
+bool BeziqueMatch::loadMatch()
 {
-    QFile loadFile(saveFormat == Json
+/*    QFile loadFile(saveFormat == Json
                    ? QStringLiteral("save.json")
                    : QStringLiteral("save.dat"));
 
@@ -48,29 +48,42 @@ bool BeziqueMatch::loadMatch(SaveFormat saveFormat)
     QJsonDocument loadDoc(saveFormat == Json
         ? QJsonDocument::fromJson(saveData)
         : QJsonDocument::fromBinaryData(saveData));
+*/
+    QSettings settings;
+    if (!settings.contains("data/eventData"))
+        return false;
+    else
+    {
 
-    read(loadDoc.object());
-
-    return true;
+        QByteArray ba(settings.value("data/gameData").toByteArray());
+        QJsonDocument gameData;
+        gameData = QJsonDocument::fromJson(ba);
+        read(gameData.object());
+        return true;
+    }
 }
 
-bool BeziqueMatch::saveMatch(SaveFormat saveFormat) const
+bool BeziqueMatch::saveMatch() const
 {
+    QJsonObject gameObject;
+    write(gameObject);
+    QJsonDocument saveDoc(gameObject);
+/*
     QFile saveFile(saveFormat == Json
                    ? QStringLiteral("save.json")
                    : QStringLiteral("save.dat"));
-
     if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning("Couldn't open save file.");
         return false;
     }
-
-    QJsonObject gameObject;
-    write(gameObject);
-    QJsonDocument saveDoc(gameObject);
     saveFile.write(saveFormat == Json
         ? saveDoc.toJson()
         : saveDoc.toBinaryData());
+*/
+    QSettings settings;
+    QByteArray ba;
+    ba = saveDoc.toJson(QJsonDocument::Compact);
+    settings.setValue("data/gameData", QVariant(ba));
 
     return true;
 }
@@ -156,7 +169,7 @@ void BeziqueMatch::gameFinished(int topScore, int bottomScore)
 
 void BeziqueMatch::trickOver()
 {
-    saveMatch(Json);
+    saveMatch();
 }
 
 void BeziqueMatch::setSaveAvaliable(bool value)

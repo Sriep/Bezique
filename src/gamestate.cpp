@@ -49,7 +49,7 @@ void GameState::init(QState *initalState)
     followToTrick->addTransition(this->gameData, SIGNAL(followedToTrick()), meld);
     meld->addTransition(this->gameData, SIGNAL(melded()), leadToTrick);
     meld->addTransition(this->gameData, SIGNAL(startEndgame()), leadEndTrick);
-    meld->addTransition(this->gameData, SIGNAL(gameOver()), cleanUp);
+    meld->addTransition(this->gameData, SIGNAL(gameOver(bool)), cleanUp);
 
     QObject::connect(leadToTrick, SIGNAL(entered()), this->gameData, SLOT(leadToTrick()));
     QObject::connect(followToTrick, SIGNAL(entered()), this->gameData, SLOT(followToTrick()));
@@ -60,7 +60,7 @@ void GameState::init(QState *initalState)
     followEndTrick->addTransition(this->gameData, SIGNAL(followedToTrick()), finishEndTrick);
     finishEndTrick->addTransition(this->gameData, SIGNAL(trickFinished()), leadEndTrick);
     finishEndTrick->addTransition(this->gameData, SIGNAL(handOver()), dealCards);
-    finishEndTrick->addTransition(this->gameData, SIGNAL(gameOver()), cleanUp);
+    finishEndTrick->addTransition(this->gameData, SIGNAL(gameOver(bool)), cleanUp);
 
     QObject::connect(leadEndTrick, SIGNAL(entered()), this->gameData, SLOT(leadToTrick()));
     QObject::connect(followEndTrick, SIGNAL(entered()), this->gameData, SLOT(followToTrick()));

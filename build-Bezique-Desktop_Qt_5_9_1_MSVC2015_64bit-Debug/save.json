@@ -1,0 +1,721 @@
+{
+    "bottomGamesWon": 0,
+    "bottomName": "human",
+    "gameData": {
+        "ai": {
+            "cards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/09c.gif",
+                    "link": 0,
+                    "rank": 2,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/08c.gif",
+                    "link": 1,
+                    "rank": 1,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13d.gif",
+                    "link": 2,
+                    "rank": 5,
+                    "suit": 0
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10s.gif",
+                    "link": 3,
+                    "rank": 6,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/07h.gif",
+                    "link": 4,
+                    "rank": 0,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/01h.gif",
+                    "link": 5,
+                    "rank": 7,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/09c.gif",
+                    "link": 6,
+                    "rank": 2,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10c.gif",
+                    "link": 7,
+                    "rank": 6,
+                    "suit": 1
+                }
+            ],
+            "hiddedCards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13d.gif",
+                    "link": 2,
+                    "rank": 5,
+                    "suit": 0
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10c.gif",
+                    "link": 7,
+                    "rank": 6,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/09c.gif",
+                    "link": 0,
+                    "rank": 2,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/09c.gif",
+                    "link": 6,
+                    "rank": 2,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/08c.gif",
+                    "link": 1,
+                    "rank": 1,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/01h.gif",
+                    "link": 5,
+                    "rank": 7,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/07h.gif",
+                    "link": 4,
+                    "rank": 0,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10s.gif",
+                    "link": 3,
+                    "rank": 6,
+                    "suit": 3
+                }
+            ],
+            "meldedCards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                }
+            ],
+            "score": 0,
+            "unseenCards": [
+                {
+                    "clubs": 1,
+                    "diamonds": 1,
+                    "hearts": 1,
+                    "spades": 1
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 1,
+                    "diamonds": 1,
+                    "hearts": 1,
+                    "spades": 1
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                }
+            ]
+        },
+        "deck": {
+            "deck": [
+                9,
+                53,
+                38,
+                3,
+                25,
+                31,
+                16,
+                28,
+                5,
+                58,
+                2,
+                0,
+                48,
+                32,
+                40,
+                30,
+                20,
+                41,
+                27,
+                15,
+                35,
+                54,
+                56,
+                7,
+                26,
+                61,
+                37,
+                50,
+                39,
+                12,
+                14,
+                8,
+                42,
+                60,
+                33,
+                19,
+                18,
+                63,
+                1,
+                24,
+                22,
+                55,
+                23,
+                45,
+                57,
+                36
+            ]
+        },
+        "faceCard": {
+            "hasBeziqued": false,
+            "hasDoubleBeziqued": false,
+            "hasFlushed": false,
+            "hasFourKinded": false,
+            "hasMarried": false,
+            "imageFile": "content/gfx/tinydeck/08c.gif",
+            "link": 8,
+            "rank": 1,
+            "suit": 1
+        },
+        "gameState": "earlyGame",
+        "humanActivePlayer": false,
+        "humanStarted": true,
+        "isEndgame": false,
+        "meldedSeven": false,
+        "player": {
+            "cards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13s.gif",
+                    "link": 0,
+                    "rank": 5,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/08h.gif",
+                    "link": 1,
+                    "rank": 1,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/11c.gif",
+                    "link": 2,
+                    "rank": 3,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13s.gif",
+                    "link": 3,
+                    "rank": 5,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/01s.gif",
+                    "link": 4,
+                    "rank": 7,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13h.gif",
+                    "link": 5,
+                    "rank": 5,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/12h.gif",
+                    "link": 6,
+                    "rank": 4,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10d.gif",
+                    "link": 7,
+                    "rank": 6,
+                    "suit": 0
+                }
+            ],
+            "hiddedCards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/10d.gif",
+                    "link": 7,
+                    "rank": 6,
+                    "suit": 0
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/11c.gif",
+                    "link": 2,
+                    "rank": 3,
+                    "suit": 1
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13h.gif",
+                    "link": 5,
+                    "rank": 5,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/12h.gif",
+                    "link": 6,
+                    "rank": 4,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/08h.gif",
+                    "link": 1,
+                    "rank": 1,
+                    "suit": 2
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/01s.gif",
+                    "link": 4,
+                    "rank": 7,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13s.gif",
+                    "link": 0,
+                    "rank": 5,
+                    "suit": 3
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/tinydeck/13s.gif",
+                    "link": 3,
+                    "rank": 5,
+                    "suit": 3
+                }
+            ],
+            "meldedCards": [
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                },
+                {
+                    "hasBeziqued": false,
+                    "hasDoubleBeziqued": false,
+                    "hasFlushed": false,
+                    "hasFourKinded": false,
+                    "hasMarried": false,
+                    "imageFile": "content/gfx/onePixelGreen.png",
+                    "link": 8,
+                    "rank": 8,
+                    "suit": 4
+                }
+            ],
+            "score": 0,
+            "unseenCards": [
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                },
+                {
+                    "clubs": 2,
+                    "diamonds": 2,
+                    "hearts": 2,
+                    "spades": 2
+                }
+            ]
+        },
+        "trumps": 1
+    },
+    "topGamesWon": 0,
+    "topName": "ai"
+}
