@@ -10,7 +10,7 @@
 BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
     : QQuickItem(parent)
 {    
-    if (restart)
+    /*if (restart)
     {
         setSaveAvaliable(false);
     }
@@ -19,17 +19,8 @@ BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
         QFile loadFile(QStringLiteral("save.json"));
         setSaveAvaliable(loadFile.exists());
         //if (saveAvaliable) loadMatch();
-    }
-}
-
-void BeziqueMatch::init()
-{
-/*    QFile loadFile(QStringLiteral("save.json"));
-    setSaveAvaliable(loadFile.exists());
-    if (saveAvaliable)
-        loadMatch();
-
-*/
+    }*/
+    //loadMatch();
 }
 
 bool BeziqueMatch::loadMatch()
@@ -50,7 +41,7 @@ bool BeziqueMatch::loadMatch()
         : QJsonDocument::fromBinaryData(saveData));
 */
     QSettings settings;
-    if (!settings.contains("data/eventData"))
+    if (!settings.contains("data/gameData"))
         return false;
     else
     {
@@ -82,7 +73,7 @@ bool BeziqueMatch::saveMatch() const
 */
     QSettings settings;
     QByteArray ba;
-    ba = saveDoc.toJson(QJsonDocument::Compact);
+    ba = saveDoc.toJson(QJsonDocument::Indented);//(QJsonDocument::Compact);
     settings.setValue("data/gameData", QVariant(ba));
 
     return true;

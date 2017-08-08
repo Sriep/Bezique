@@ -11,30 +11,30 @@ Card::Card(int iCard, QQuickItem *parent)
     : QQuickItem(parent)
     , rank(iCard / 8)
     , suit(iCard % 4)
-    , imageFile(getFilename(rank, suit))
     , link(EMPTY)
     , cardId(iCard)
 {
+    setImage(getFilename(rank, suit));
 }
 
 Card::Card(const Card *card, QQuickItem *parent)
     : QQuickItem(parent)
     , rank(card->rank)
     , suit(card->suit)
-    , imageFile(card->imageFile)
     , link(card->link)
     , cardId(card->cardId)
 {
+    setImage(card->imageFile);
 }
 
 Card::Card(const Card &card, QQuickItem *parent)
     : QQuickItem(parent)
     , rank(card.rank)
     , suit(card.suit)
-    , imageFile(card.imageFile)
     , link(card.link)
     , cardId(card.cardId)
 {
+    setImage(card.imageFile);
 }
 
 bool Card::beats(const Card &c, int trumps) const
@@ -66,7 +66,7 @@ void Card::setCard(int cardId, int newLink)
     rank = cardId / 8;
     suit  = (Suit) (cardId % 4);
     cardId = cardId;
-    imageFile = getFilename(rank, suit);
+    setImage(getFilename(rank, suit));
     link = newLink;
     clearMeldStatus();
     emit cardChanged();
@@ -77,7 +77,7 @@ void Card::copyCard(const Card &card)
     rank = card.rank;
     suit = card.suit;
     cardId = card.cardId;
-    imageFile = card.imageFile;
+    setImage(card.imageFile);
     link = card.link;
 
     setCanMeld(card.canMeld);
@@ -104,12 +104,17 @@ void Card::clearCard()
     rank = Rank::NumRanks;
     suit  = Suit::NumSuits;
     cardId = -1;
-    imageFile = emptyBitmap;
+    setImage(emptyBitmap);
     link = EMPTY;
     clearMeldStatus();
     emit cardChanged();
 }
-
+/*
+bool Card::isVisible()
+{
+    return emptyBitmap == imageFile;
+}
+*/
 bool Card::isCleard()
 {
     //return emptyBitmap == imageFile;
@@ -414,9 +419,22 @@ void Card::setImage(QString image)
     {
          imageFile = image;
          emit cardChanged();
+         setIsVisible(emptyBitmap != imageFile);
     }
+}
 
+bool Card::isVisible() const
+{
+    return m_isVisible;
+}
 
+void Card::setIsVisible(bool isVisible)
+{
+    if (m_isVisible == isVisible)
+        return;
+
+    m_isVisible = isVisible;
+    emit isVisibleChanged(m_isVisible);
 }
 
 

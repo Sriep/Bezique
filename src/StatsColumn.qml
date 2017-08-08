@@ -5,12 +5,16 @@ import QtQuick.Controls 2.0
 import Bezique 1.0
 
 ColumnLayout {
+    id: statsCol
+    spacing: 1
+    property int statsHeight: (root.cardHeight - 2*statsCol.spacing)/3
 
   Rectangle {
       //anchors.top: parent.top
       Layout.alignment: Qt.AlignTop
       color: root.backColor;
-      width: parent.width; height: root.cardHeight/3;
+      width: parent.width//; height: root.cardHeight/3;
+      height: statsHeight
       Text {
          color: "white"
          text :  gameData.aiPlayer.score.toString()
@@ -19,11 +23,11 @@ ColumnLayout {
 
   RowLayout {
       Layout.alignment: Qt.AlignVCenter
-      width: parent.width; height: root.cardHeight/3;
+      width: parent.width; height: statsHeight;
       spacing: 10
       Rectangle {
           color: root.backColor;
-          width: 10; height: root.cardHeight/3;
+          width: 10; height: statsHeight;
           Text{
             color: "white"
             text : gameData.cardsInStock.toString()
@@ -32,7 +36,7 @@ ColumnLayout {
 
       Rectangle {
           color: root.backColor;
-          width: 10; height: root.cardHeight/3;
+          width: 10; height: statsHeight;
           Text {
              color: (gameData.trumps === 0 || gameData.trumps === 2)
                     ? "red" : "black";
@@ -53,14 +57,14 @@ ColumnLayout {
           } // Text
       } // Rectangle
   }
-
+/*
   Rectangle {
       Layout.alignment: Qt.AlignBottom
       color: root.backColor;
-      width: parent.width; height: root.cardHeight/3;
+      width: parent.width; height: statsHeight;
       Text {
           color: "white"
           text : gameData.humanPlayer.score.toString()
       }
-  }
+  }*/
 }

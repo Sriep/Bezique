@@ -1,42 +1,41 @@
-# This file is used to ignore files which are generated
-# ----------------------------------------------------------------------------
+# C++ objects and libs
 
-*~
-*.autosave
-*.a
-*.core
-*.moc
+*.slo
+*.lo
 *.o
-*.obj
-*.orig
-*.rej
+*.a
+*.la
+*.lai
 *.so
-*.so.*
-*_pch.h.cpp
-*_resource.rc
-*.qm
-.#*
-*.*#
-core
-!core/
-tags
-.DS_Store
-.directory
-*.debug
-Makefile*
-*.prl
-*.app
-moc_*.cpp
-ui_*.h
-qrc_*.cpp
-Thumbs.db
-*.res
-*.rc
+*.dll
+*.dylib
+
+# Qt-es
+
 /.qmake.cache
 /.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
 
-# qtcreator generated files
-*.pro.user*
+# QtCreator
+
+*.autosave
+
+# QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCtreator CMake
+CMakeLists.txt.user*
+buld*/
 
 # xemacs temporary files
 *.flc
@@ -71,3 +70,7 @@ Thumbs.db
 *.dll
 *.exe
 
+.~*
+.~lock.*
+*#
+thumbs.db

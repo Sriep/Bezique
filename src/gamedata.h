@@ -35,6 +35,7 @@ public:
     static const int NO_MELD = -1;
 
     Q_INVOKABLE void startNewGame();
+    Q_INVOKABLE void continueGame();
     Q_INVOKABLE void cardPlayed(int index, bool melded = false);
     Q_INVOKABLE void humanMeld(bool meldMade, int index = NO_MELD, bool meldRow = false);
     Q_INVOKABLE void finishTrick();

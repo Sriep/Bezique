@@ -18,6 +18,7 @@ ApplicationWindow {
     property int playerScore: 0//userSettings.playerScore
     property int aiScore : 0//userSettings.aiScore
     property int gameTarget : 1000
+    property int toolbarHeight : toolbar.height
 
     ToolBar {
         id: toolbar
@@ -73,12 +74,13 @@ ApplicationWindow {
         height: parent.height
         width: parent.width
         y: toolbar.height
+        property int ttoolbarHeight : toolbar.height
         ColumnLayout {
             id: selectButtons
 
             RowLayout {
                 Label {
-                    text: "Player name"
+                    text: "Player name" + "toobar height" + ttoolbarHeight
                 }
                 TextField {
                     id: userNameTextField
@@ -113,7 +115,7 @@ ApplicationWindow {
                 Button {
                     text: "Continue"
                     onClicked: {
-                        gameBoard.playing = true;
+                        gameBoard.continueGame();
                         mainDisplay.currentIndex = 1;
                         console.log("Contnue");
                     }
@@ -124,8 +126,7 @@ ApplicationWindow {
                     onClicked: {
                         appwin.playerScore = 0
                         appwin.aiScore = 0
-                        gameBoard.playing = false;
-                        gameBoard.playing = true;
+                        gameBoard.newGame();
                         mainDisplay.currentIndex = 1;
                         console.log("New");
                     }
@@ -147,7 +148,7 @@ ApplicationWindow {
             property string bottomGamesWon: bottomGamesWon
             property int topGamesWon: topGamesWon
             property bool restartGame: restartGame = false
-
+            property int toolbarHeight : mainDisplay.ttoolbarHeight
          }
 
         MessageDialog {
@@ -158,8 +159,7 @@ ApplicationWindow {
             visible: false
             standardButtons: StandardButton.Yes | StandardButton.No
             onYes: {
-                gameBoard.playing = false;
-                gameBoard.playing = true;
+                gameBoard.newGame();
                 visible = false;
                 mainDisplay.currentIndex = 1;
             }
@@ -189,13 +189,13 @@ ApplicationWindow {
         property alias aiScore : appwin.aiScore
         property alias gameTarget : appwin.gameTarget
     }
-
+/*
     Settings {
         id: gameData
         category: "data"
         property string gameData: ""
     }
-
+*/
     function getTitleBar () {
         var titleBar = "Bezique. "
                       + appwin.playerName

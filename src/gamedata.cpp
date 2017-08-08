@@ -109,6 +109,11 @@ void GameData::startNewGame()
     game.start();
 }
 
+void GameData::continueGame()
+{
+    startNewGame();
+}
+
 void GameData::cutForDeal()
 { 
     aiPlayer->setOpponent(humanPlayer);

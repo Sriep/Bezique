@@ -19,7 +19,7 @@ class Player : public QQuickItem
     Q_PROPERTY(bool ai READ isAi WRITE setAi)
     Q_PROPERTY(int score READ getScore WRITE setScore NOTIFY scoreChanged)
 public:
-    static const int winningThreshold = 20;//1000;
+    static const int winningThreshold = 400;//1000;
 
     Player(QQuickItem *parent = 0);
     //Player();

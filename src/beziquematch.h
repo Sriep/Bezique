@@ -63,8 +63,6 @@ public slots:
     void setSaveAvaliable(bool value);
 
 private:
-    void init();
-
     GameData* gameData;
     QString bottomName = "human";
     QString topName = "top";

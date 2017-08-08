@@ -10,12 +10,35 @@ import QtQuick.Window 2.2
 Item {
     id: root
     visible: true
-    property bool playing: false
-
     width: parent.width; height: parent.height;
-    property int cardWidth: 46
-    property int cardHeight: 66
-    property int vRowSpacing: 1
+    //statusMessage = "Play\n" + Screen.desktopAvailableHeight  + " " + Screen.desktopAvailableWidth;
+    //property int screenWidth: 360//Screen.desktopAvailableWidth
+    //property int screenHeight: 616//Screen.desktopAvailableHeight
+
+    property int vRowSpacing: 0
+    property int hRowSpacing: 0
+    property int cardPicWidth: 46
+    property int cardPicHeight: 66
+    function calCardPixelSize(cardWidth, cardHeight) {
+        var maxWidth = (Screen.desktopAvailableWidth - 7*hRowSpacing)/8;
+        maxWidth = cardWidth < maxWidth ? cardWidth : maxWidth;
+
+        var maxHeight = (Screen.desktopAvailableHeight
+                         - 4*vRowSpacing - toolbar.height)/5;
+        maxHeight = cardHeight < maxHeight ? cardHeight : maxHeight;
+
+        var pixelSizeWidth = maxWidth / cardWidth;
+        var pixelSizeHeight = maxHeight / cardHeight;
+        var rtv = pixelSizeWidth < pixelSizeHeight ? pixelSizeWidth : pixelSizeHeight;
+        console.log("calCardPixelSize",rtv);
+        console.log("cardWidth",rtv * cardWidth);
+        console.log("cardHeight",rtv *  cardHeight);
+        return pixelSizeWidth < pixelSizeHeight ? pixelSizeWidth : pixelSizeHeight;
+    }
+    property int cardWidth: Math.floor(calCardPixelSize(cardPicWidth, cardPicHeight) * cardPicWidth)
+    property int cardHeight: Math.floor(calCardPixelSize(cardPicWidth, cardPicHeight) * cardPicHeight * 0.95)
+
+
     property string emptyImage: "content/gfx/onePixelGreen.png"
     property string backImage: "content/gfx/tinydeck/back111.gif"
     property string backColor: "green"
@@ -26,6 +49,10 @@ Item {
     property int topGamesWon: match.topGamesWon
     property bool saveAvaliable: match.saveAvaliable
     property bool restartGame: restartGame = false
+    property int toolbarHeight :0
+
+    signal continueGame()
+    signal newGame()
 
     Rectangle {
         width: parent.width; height: parent.height;
@@ -40,6 +67,8 @@ Item {
                 console.log("gameData.waitNextTrick",gameData.waitNextTrick);
                 console.log("Screen.desktopAvailableHeight",Screen.desktopAvailableHeight);
                 console.log("Screen.desktopAvailableWidth",Screen.desktopAvailableWidth);
+                console.log("aiMelded1",aiMelded1);
+                var temp = aiMelded1;
                 if (!gameData.isGameInProgress())
                     return;
 
@@ -75,7 +104,7 @@ Item {
             humansCard: Card {}
 
             property bool aiPlayedCard: aisCard.image !== root.emptyImage
-            property string statusMessage: "Playz"
+            property string statusMessage: "Play"
             property bool waitingForCard: false
             property bool humanMelding: false
             property bool drawCard: false
@@ -115,6 +144,22 @@ Item {
                     console.log("onPlayingChanged");
                     if (playing)
                         gameData.startNewGame();
+                }
+            }
+
+            Connections {
+                target: root
+                onContinueGame: {
+                    console.log("onPlayingChanged");
+                    gameData.continueGame();
+                }
+            }
+
+            Connections {
+                target: root
+                onNewGame: {
+                    gameData.startNewGame();
+                    console.log("onNewGame");
                 }
             }
 
@@ -243,7 +288,6 @@ Item {
         //Column {
         ColumnLayout    {
             spacing: root.vRowSpacing
-
             AiCardRow {
                 id: aiHidden
                 width: root.cardWidth; height: root.cardHeight;

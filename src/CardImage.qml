@@ -1,16 +1,19 @@
 import QtQuick 2.0
+import Bezique 1.0
 
 Rectangle {
     id: cardImage
     color: root.backColor;
     width: root.cardWidth; height: root.cardHeight;
+    property Card thisCard
     property string image: "content/gfx/b1fv.bmp"
     property bool canMeld: false;
+    //property alias canMeld: thisCard.canMeld
     property bool canPlay: true;
     property int rowPos: 0
     property bool melded: false
     border.width: {
-        if (image === root.emptyImage)
+        if (thisCard.image === root.emptyImage)
             return 0;
         if (gameData.waitingForCard
             || (gameData.humanMelding && cardImage.canMeld) )
@@ -34,7 +37,13 @@ Rectangle {
         return "green"
     }
 
-    Image { source: cardImage.image }
+    Image {
+        width: root.cardWidth * 0.95;
+        height: root.cardHeight * 0.95;
+        //source: cardImage.image
+        visible: thisCard.image !== root.emptyImage//thisCard.isVisible
+        source: thisCard.image
+    }
     MouseArea {
         id: cimageMouseArea
         anchors.fill: parent;
@@ -53,19 +62,3 @@ Rectangle {
     }
 }
 
-/*
-Flipable {
-    property alias source: frontImage.source
-    property bool flipped: true
-    width: front.width; height: front.height
-    front: Image { id: frontImage }
-    back: Image { source: "content/gfx/b1fv.bmp" }
-    state: "back"
-    MouseArea {
-        anchors.fill: parent;
-        onClicked: {
-            container.flipped = !container.flipped
-        }
-    }
-}
-*/

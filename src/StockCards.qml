@@ -5,16 +5,25 @@ import QtQuick.Controls 2.0
 import Bezique 1.0
 
 RowLayout {
-    spacing: root.vRowSpacing
+    height: root.cardHeight
+    spacing: root.hRowSpacing
     Rectangle {
         color: root.backColor;
         width: root.cardWidth; height: root.cardHeight;
-        Image {  source: gameData.stockImage }
+        Image {
+            width: root.cardWidth * 0.95;
+            height: root.cardHeight * 0.95;
+            source: gameData.stockImage
+        }
     }
     Rectangle {
         color: root.backColor;
         width: root.cardWidth; height: root.cardHeight;
-        Image { source: gameData.faceCard.image }
+        Image {
+            width: root.cardWidth * 0.95;
+            height: root.cardHeight * 0.95;
+            source: gameData.faceCard.image
+        }
     }
 
     StatsColumn {
@@ -30,13 +39,16 @@ RowLayout {
         Text {
             horizontalAlignment:  Text.AlignHCenter
             font.family: "Helvetica"
-            font.pointSize: 20
+            font.pointSize: 10//20
             color: "white"
             text: gameData.statusMessage
+                  + "\n H: " + root.cardHeight + " W: " + root.cardWidth
+                    + " TBH: " + toolbar.height
         }
     }
 
     TrickCards {
+        height: root.cardHeight;
        // anchors.centerIn: parent
     } //Row
 }

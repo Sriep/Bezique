@@ -9,7 +9,8 @@ class Card : public QQuickItem
     Q_PROPERTY(QString image READ getImage WRITE setImage NOTIFY cardChanged)
     Q_PROPERTY(int rank READ getRank WRITE setRank NOTIFY cardChanged)
     Q_PROPERTY(int suit READ getSuit WRITE setSuit NOTIFY cardChanged)
-
+    Q_PROPERTY(bool isVisible READ isVisible
+               WRITE setIsVisible NOTIFY isVisibleChanged)
     Q_PROPERTY(bool canMeld READ getCanMeld
                WRITE setCanMeld NOTIFY canMeldChanged)
     Q_PROPERTY(bool canPlay READ getCanPlay
@@ -52,6 +53,7 @@ public:
     void copyCard(const Card& card);
     int getCardId() const;
     void clearCard();
+    //Q_INVOKABLE bool isVisible();
     bool isCleard();
 
     // qml Properties access
@@ -93,7 +95,8 @@ public:
     void write(QJsonObject &json) const;
 
     bool getCanPlay() const;
-    void setCanPlay(bool value);
+    void setCanPlay(bool value);    
+    bool isVisible() const;
 
 signals:
     void cardChanged();
@@ -104,9 +107,12 @@ signals:
     void hasBeziquedChanged();
     void hasDoubleBeziquedChanged();
     void hasFlushedChanged();
-    void hasFourKindedChanged();
+    void hasFourKindedChanged();    
+    void isVisibleChanged(bool isVisible);
 
 public slots:
+    void setIsVisible(bool isVisible);
+
 private:
     QString getFilename(int rank, int suit);
     void clearMeldStatus();
@@ -134,6 +140,7 @@ private:
     bool canBezique = false;
     bool canDoubleBezique = false;
     bool canFourKind = false;
+    bool m_isVisible = (imageFile == emptyBitmap);
 };
 
 #endif // CARD_H
