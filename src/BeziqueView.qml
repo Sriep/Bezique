@@ -11,9 +11,6 @@ Item {
     id: root
     visible: true
     width: parent.width; height: parent.height;
-    //statusMessage = "Play\n" + Screen.desktopAvailableHeight  + " " + Screen.desktopAvailableWidth;
-    //property int screenWidth: 360//Screen.desktopAvailableWidth
-    //property int screenHeight: 616//Screen.desktopAvailableHeight
 
     property int vRowSpacing: 0
     property int hRowSpacing: 0
@@ -36,6 +33,8 @@ Item {
         return pixelSizeWidth < pixelSizeHeight ? pixelSizeWidth : pixelSizeHeight;
     }
     property int cardWidth: Math.floor(calCardPixelSize(cardPicWidth, cardPicHeight) * cardPicWidth)
+    // Multiplying cardHeight by 0.95 seems to work on my android.
+    // Need to check this out on ohter resolutions.
     property int cardHeight: Math.floor(calCardPixelSize(cardPicWidth, cardPicHeight) * cardPicHeight * 0.95)
 
 
@@ -311,7 +310,6 @@ Item {
                 id: humanHidden
             }
         } //Column
-
     } // BeziqueMatch
 
 } // Item
