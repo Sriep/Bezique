@@ -25,6 +25,7 @@ class GameData : public QQuickItem
     Q_PROPERTY(Player* aiPlayer READ getAiPlayer WRITE setAiPlayer NOTIFY changedAiPlayer)
     Q_PROPERTY(int trumps READ getTrumps WRITE setTrumps NOTIFY changedTrumps)
     Q_PROPERTY(int cardsInStock READ getCardsInStock WRITE setCardsInStock NOTIFY cardsInStockChanged)
+    Q_PROPERTY(int winningThreshold READ winningThreshold WRITE setWinningThreshold NOTIFY winningThresholdChanged)
 public:
     friend class GameState;
     GameData(QQuickItem *parent = 0);
@@ -63,9 +64,16 @@ public:
 
     void setBeziqueMatch(BeziqueMatch *value);
 
+    int winningThreshold() const;
+
 public slots:
     Q_INVOKABLE void scoreEndTrick();
+    void setWinningThreshold(int winningThreshold);
+
 signals:
+    void userMessage(const QString& text
+            , const QString& detailedText
+            , const QString& informativeText );
     void deckCut();
     void handsDealt();
     void trickFinished();
@@ -78,24 +86,36 @@ signals:
     void waitingForCard();
     void waitingForMeld();
     void melded();
+
+    void nextTrick();
+    void nextEndTrick();
+
     void changedFaceCard();
     void changedHumansCard();
     void changedAisCard();
     void changedTrumps();
     void changedHumanPlayer();
     void changedAiPlayer();
+
     void cardsInStockChanged();
     void playEndTrick();
     void drawing();
+    void readInGame();
+    void setUpNewGame();
     //void cardsChanged();
+    void winningThresholdChanged(int winningThreshold);
+
 private slots:
     void cutForDeal();
     void dealCards();
     void leadToTrick();
+    //void leadEndTrick();
     void followToTrick();
     void meld();
     void endHand();
     void endGame();
+    void readIn();
+    void initaliseGame();
 private:
     void switchActivePlayer();
     void init();
@@ -124,6 +144,8 @@ private:
     bool isGameOver = false;
     bool reset = false;
     BeziqueMatch* beziqueMatch;
+    bool readingInGame = false;
+    int m_winningThreshold = 1000;
 };
 
 #endif // GAMEDATA_H

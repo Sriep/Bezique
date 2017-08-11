@@ -1,5 +1,5 @@
 QT += qml quick
-
+QT += widgets
 CONFIG += c++11
 HEADERS += \
     beziqueDeck.h \

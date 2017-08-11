@@ -242,6 +242,24 @@ void GameData::endGame()
     isEndgame  = false;
 }
 
+void GameData::readIn()
+{
+    beziqueMatch->loadMatch();
+    emit changedAiPlayer();
+    emit changedHumanPlayer();
+    emit changedFaceCard();
+    emit handsDealt();
+}
+
+void GameData::initaliseGame()
+{
+    if (readingInGame)
+        emit readInGame();
+    else
+        emit setUpNewGame();
+    readingInGame = false;
+}
+
 // call from qml
 void GameData::humanMeld(bool meldMade, int index, bool meldRow)
 {
@@ -326,6 +344,11 @@ void GameData::setBeziqueMatch(BeziqueMatch *value)
     beziqueMatch = value;
 }
 
+int GameData::winningThreshold() const
+{
+    return m_winningThreshold;
+}
+
 int GameData::getCardsInStock() const
 {
     return cardsInStock;
@@ -395,6 +418,15 @@ void GameData::scoreEndTrick()
     humanPlayer->getHand()->syncHands();
     aiPlayer->getHand()->syncHands();
     emit trickFinished();
+}
+
+void GameData::setWinningThreshold(int winningThreshold)
+{
+    if (m_winningThreshold == winningThreshold)
+        return;
+
+    m_winningThreshold = winningThreshold;
+    emit winningThresholdChanged(m_winningThreshold);
 }
 
 void GameData::read(const QJsonObject &json)
