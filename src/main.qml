@@ -7,7 +7,7 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.1
 import QtQuick.Controls.Universal 2.1
-
+//import Qt.labs.platform 1.0
 ApplicationWindow {
     id: appwin
     visible: true
@@ -19,10 +19,14 @@ ApplicationWindow {
     property int aiScore : 0//userSettings.aiScore
     property int gameTarget : 1000
     property int toolbarHeight : toolbar.height
-
+/*
+    UseInfoBox {
+        id: useInfoBox
+        //buttons: MessageDialog.Ok
+    }
+*/
     ToolBar {
         id: toolbar
-        //Material.foreground: "white"
         width: parent.width
         RowLayout {
             spacing: 20
@@ -48,20 +52,22 @@ ApplicationWindow {
                     id: optionsMenu
                     x: parent.width - width
                     transformOrigin: Menu.TopRight
-
+                    /*
                     MenuItem {
-                        text: "Main menu"
+                        text: qsTr("Main menu")
                         onTriggered: {
                             mainDisplay.currentIndex = 0;
                             console.log("New Game");
                         }
                     }
+                    */
                     //MenuItem {
                     //    text: "About"
                     //    onTriggered: console.log("About");
                     //}
+
                     MenuItem {
-                        text: "Quit"
+                        text: qsTr("Quit")
                         onTriggered: Qt.quit();
                     }
                 } //Menu
@@ -74,73 +80,112 @@ ApplicationWindow {
         height: parent.height
         width: parent.width
         y: toolbar.height
-        property int ttoolbarHeight : toolbar.height
-        ColumnLayout {
-            id: selectButtons
-
-            RowLayout {
-                Label {
-                    text: "Player name" + "toobar height" + ttoolbarHeight
-                }
-                TextField {
-                    id: userNameTextField
-                    text: userSettings.playerName
-                    cursorVisible: true
-                    selectByMouse: true
-                    onEditingFinished: {
-                        appwin.playerName = userNameTextField.text;
-                        console.log("new player name 1 ", appwin.playerName);
-                        console.log("new player name 2 ", userSettings.playerName);
+        //property int ttoolbarHeight : toolbar.height
+        //Flickable {
+            //id: flickOptions
+            //property int changedGameTarget: appwin.gameTarget
+            ColumnLayout {
+                id: selectButtons
+                property int changedGameTarget: appwin.gameTarget
+                RowLayout {
+                    Label {
+                        text: "Player name"
+                    }
+                    TextField {
+                        id: userNameTextField
+                        text: userSettings.playerName
+                        cursorVisible: true
+                        selectByMouse: true
+                        onEditingFinished: {
+                            appwin.playerName = userNameTextField.text;
+                            console.log("new player name 1 ", appwin.playerName);
+                            console.log("new player name 2 ", userSettings.playerName);
+                        }
                     }
                 }
-            }
-            RowLayout {
-                Label {
-                    text: "Opponent name"
-                }
-
-                TextField {
-                    id: aiNameTextField
-                    text: userSettings.aiName
-                    cursorVisible: true
-                    selectByMouse: true
-                    onEditingFinished: {
-                        appwin.aiName = aiNameTextField.text;
-                        console.log("new player name a ", appwin.aiName);
-                        console.log("new player name b ", userSettings.aiName);
+                RowLayout {
+                    Label {
+                        text: "Opponent name"
+                    }
+                    TextField {
+                        id: aiNameTextField
+                        text: userSettings.aiName
+                        cursorVisible: true
+                        selectByMouse: true
+                        onEditingFinished: {
+                            appwin.aiName = aiNameTextField.text;
+                            console.log("new player name a ", appwin.aiName);
+                            console.log("new player name b ", userSettings.aiName);
+                        }
                     }
                 }
-            }
-            RowLayout {
-                Button {
-                    text: "Continue"
-                    onClicked: {
-                        gameBoard.continueGame();
-                        mainDisplay.currentIndex = 1;
-                        console.log("Contnue");
+                RowLayout {
+                    Button {
+                        text: "Continue"
+                        onClicked: {
+                            gameBoard.continueGame();
+                            mainDisplay.currentIndex = 1;
+                            console.log("Contnue");
+      /*
+                            if (appwin.gameTarget === selectButtons.changedGameTarget) {
+                                gameBoard.continueGame();
+                                mainDisplay.currentIndex = 1;
+                                console.log("Continue");
+                            } else {
+                                useInfoBox.text = qsTr("Continue disable")
+                                useInfoBox.informativeText  = qsTr("You can only "
+                                    + "start a new game after changing the winnint threshold.")
+                                useInfoBox.detailedText  = qsTr("To continue "
+                                    + "change the winning thresold back to "
+                                    + "its original value of ") + appwin.gameTarget
+                                useInfoBox.visible = true;
+                            }*/
+                        }
+                    }
+                    Button {
+                        x:20
+                        text: "New"
+                        onClicked: {
+                            appwin.gameTarget = selectButtons.changedGameTarget
+                            console.log("new game target", appwin.gameTarget)
+                            appwin.playerScore = 0
+                            appwin.aiScore = 0
+                            gameBoard.newGame();
+                            mainDisplay.currentIndex = 1;
+                            console.log("New");
+                        }
+                    }
+                    Button {
+                        x:20
+                        text: qsTr("Exit")
+                        onClicked: Qt.quit();
                     }
                 }
-                Button {
-                    x:20
-                    text: "New"
-                    onClicked: {
-                        appwin.playerScore = 0
-                        appwin.aiScore = 0
-                        gameBoard.newGame();
-                        mainDisplay.currentIndex = 1;
-                        console.log("New");
+                /*
+                RowLayout {
+                    id: rowSetWinningThreshold
+                    //visible: false
+                    Label {
+                        text: qsTr("Winning Threshold")
+                    }
+                    TextField {
+                        id: setWinningThreshold
+                        text: appwin.gameTarget
+                        validator: IntValidator{bottom: 10; top: 2000;}
+                        cursorVisible: true
+                        selectByMouse: true
+                        //visible: false
+                        onEditingFinished: {
+                            if (acceptableInput) {
+                                flickOptions.changedGameTarget = parseInt(text);
+                                console.log("new win threshold", flickOptions.changedGameTarget);
+                                //appwin.gameTarget = parseInt(text);
+                            }
+                        }
                     }
                 }
-                Button {
-                    x:20
-                    text: "Exit"
-                    onClicked: Qt.quit();
-                }
-            }
-
-
+            }*/
         }
-
         BeziqueView {
             id: gameBoard
             property string bottomName: bottomName
@@ -148,14 +193,14 @@ ApplicationWindow {
             property string bottomGamesWon: bottomGamesWon
             property int topGamesWon: topGamesWon
             property bool restartGame: restartGame = false
-            property int toolbarHeight : mainDisplay.ttoolbarHeight
+            //property int toolbarHeight : mainDisplay.ttoolbarHeight
          }
 
         MessageDialog {
             id: finishedGame
             icon: StandardIcon.Question
-            title: "Game over"
-            informativeText: "Select yes to start another game and 'no' to quit"
+            title: qsTr("Game over")
+            informativeText: qsTr("Select yes to start another game and 'no' to quit")
             visible: false
             standardButtons: StandardButton.Yes | StandardButton.No
             onYes: {
@@ -197,7 +242,7 @@ ApplicationWindow {
     }
 */
     function getTitleBar () {
-        var titleBar = "Bezique. "
+        var titleBar = qsTr("Bezique. ")
                       + appwin.playerName
                       + ": " + appwin.playerScore
                       + "  " + appwin.aiName

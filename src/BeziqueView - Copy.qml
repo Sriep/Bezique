@@ -5,8 +5,7 @@ import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
 import Bezique 1.0
 import QtQuick.Window 2.2
-//import Qt.labs.settings 1.0
-//import Qt.labs.platform 1.0
+
 
 Item {
     id: root
@@ -53,25 +52,7 @@ Item {
 
     signal continueGame()
     signal newGame()
-/*
-    MessageDialog {
-        buttons: MessageDialog.Ok
-        id: messageDialog
-        onOkClicked: {
-            visible = false;
-        }
-    }
-    Connections {
-        target: gameData
-        onUserMessage: {
-            //useInfoBox.text = text
-            //useInfoBox.detailedText  = detailedText
-            //useInfoBox.informativeText  = informativeText
-            //useInfoBox.visible = true;
-            console.log("user Message signal");
-        }
-    }
-*/
+
     Rectangle {
         width: parent.width; height: parent.height;
         color: root.backColor;
@@ -112,20 +93,6 @@ Item {
         topGamesWon: 0
         saveAvaliable: false
 
-        Connections {
-            target: appwin
-            onPlayerNameChanged: {
-                match.bottomName = appwin.playerName;
-            }
-        }
-
-        Connections {
-            target: appwin
-            onAiNameChanged: {
-                match.topName = appwin.aiName;
-            }
-        }
-
         gameData: GameData {
             id: gameData
             faceCard: Card { id: faceCard; }
@@ -146,7 +113,7 @@ Item {
 
             onWaitingForCard: {
                 waitingForCard = true;
-                statusMessage = "Play\n";// + Screen.desktopAvailableHeight  + " " + Screen.desktopAvailableWidth;
+                statusMessage = "Play\n" + Screen.desktopAvailableHeight  + " " + Screen.desktopAvailableWidth;
             }
 
             onFollowedToTrick: {
@@ -160,17 +127,16 @@ Item {
                 console.log("GameOver", playerWon);
                 if (playerWon) {
                     appwin.playerScore++;
-                    match.bottomGamesWon++;
                     finishedGame.text = "Congratulations you won the game. Play again?"
                 } else {
                     finishedGame.text = "Bad luck you lost the game. Play again?"
                     appwin.aiScore++;
-                    match.topGamesWon++;
                 }
                 finishedGame.visible = true;
                 mainDisplay.currentIndex = 2;
+                //gameData.startNewGame();
             }
-/*
+
             Connections {
                 target: root
                 onPlayingChanged: {
@@ -179,12 +145,11 @@ Item {
                         gameData.startNewGame();
                 }
             }
-*/
+
             Connections {
                 target: root
                 onContinueGame: {
-                    console.log("onContinueGame");
-                    gameData.winningThreshold = appwin.gameTarget;
+                    console.log("onPlayingChanged");
                     gameData.continueGame();
                 }
             }
@@ -192,9 +157,8 @@ Item {
             Connections {
                 target: root
                 onNewGame: {
+                    gameData.startNewGame();
                     console.log("onNewGame");
-                    gameData.winningThreshold = appwin.gameTarget;
-                    gameData.startNewGame();                    
                 }
             }
 
@@ -262,6 +226,7 @@ Item {
                         Card { id: melded7 },
                         Card { id: melded8 }
                     ] //card
+
                 } // playerHand: BeziqueHand
             } // humanPlayer: Player
 
@@ -320,7 +285,7 @@ Item {
         } //GameData
 
         //Column {
-        ColumnLayout {
+        ColumnLayout    {
             spacing: root.vRowSpacing
             AiCardRow {
                 id: aiHidden
