@@ -440,6 +440,11 @@ void GameData::read(const QJsonObject &json)
     QJsonObject computerObject = json["ai"].toObject();
     aiPlayer->read(computerObject);
 
+    aiPlayer->setOpponent(humanPlayer);
+    humanPlayer->setOpponent(aiPlayer);
+
+    activePlayer = json["aiActivePlayer"].toBool() ? aiPlayer : humanPlayer;
+
     QJsonObject deckObject = json["deck"].toObject();
     getDeck()->read(deckObject);
     setCardsInStock(getDeck()->size());
@@ -447,22 +452,42 @@ void GameData::read(const QJsonObject &json)
     meldedSeven = json["meldedSeven"].toBool();
     humanStarted = json["humanStarted"].toBool();
     activePlayer = json["humanActivePlayer"].toBool() ? humanPlayer : aiPlayer;
-    trumps = json["trumps"].toInt();
+    setTrumps(json["trumps"].toInt());
+    setWinningThreshold(json["winningThreshold"].toInt());
     isEndgame = json["isEndgame"].toBool();
 
     isHandOver = false;
     isGameOver = false;
     reset = false;
     isEndgame = false;
-    QString gameState = json["gameSteate"].toString();
+
+    //emit readInGame();
+    QString gameState = json["gameState"].toString();
     if (gameState == GS_HAND_OVER)
+    {
         isHandOver = true;
+        emit handOver();
+    }
     else if (gameState == GS_GAME_OVER)
+    {
         isGameOver = true;
+        emit handOver();
+    }
     else if (gameState == GS_RESET)
+    {
         reset = true;
-    else
-        isEndgame = (gameState == GS_ENDGAME);
+        emit handOver();
+    }
+    else if (gameState == GS_ENDGAME)
+    {
+        emit nextEndTrick();
+        isEndgame = false;
+    }
+    else if (gameState == GS_EARLY_GAME)
+    {
+        isEndgame = true;
+        emit nextTrick();
+    }
 }
 
 void GameData::write(QJsonObject &json) const
@@ -479,6 +504,8 @@ void GameData::write(QJsonObject &json) const
     aiPlayer->write(computerObject);
     json["ai"] = computerObject;
 
+    json["aiActivePlayer"] = activePlayer->isAi();
+
     QJsonObject deckObject;
     deck.write(deckObject);
     json["deck"] = deckObject;
@@ -488,6 +515,7 @@ void GameData::write(QJsonObject &json) const
     json["humanActivePlayer"] = activePlayer == humanPlayer;
     json["trumps"] = trumps;
     json["isEndgame"] = isEndgame;
+    json["winningThreshold"] = winningThreshold();
 
     if (isHandOver)
         json["gameState"] = GS_HAND_OVER;
