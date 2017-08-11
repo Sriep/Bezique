@@ -39,16 +39,15 @@ RowLayout {
         Text {
             horizontalAlignment:  Text.AlignHCenter
             font.family: "Helvetica"
-            font.pointSize: 10//20
+            font.pointSize: 20
             color: "white"
             text: gameData.statusMessage
-                  + "\n H: " + root.cardHeight + " W: " + root.cardWidth
-                    + " TBH: " + toolbar.height
+                  //+ "\n H: " + root.cardHeight + " W: " + root.cardWidth
+                  //  + " TBH: " + toolbar.height
         }
     }
 
     TrickCards {
         height: root.cardHeight;
-       // anchors.centerIn: parent
     } //Row
 }

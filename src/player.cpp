@@ -100,7 +100,7 @@ void Player::dump()
 
 void Player::read(const QJsonObject &json)
 {
-    score = json["sore"].toInt();
+    setScore(json["score"].toInt());
     hand->read(json);
     unseen.read(json);
 }
@@ -276,5 +276,5 @@ bool Player::handEmpty() const
 
 bool Player::won() const
 {
-    return score >= winningThreshold;
+    return score >= gameData->winningThreshold();
 }

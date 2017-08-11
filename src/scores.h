@@ -19,7 +19,7 @@ static const int SCORE_FOUR_KINGS = 80;
 static const int SCORE_FOUR_ACES = 100;
 
 /*
-static int valueSeven(int score = 1000);
+static int valueSeven(int score = scores.h1000);
 static int valueMarrage(int score = 1000);
 static int valueRoyalMarrage(int score = 1000);
 static int valueFlush(int score = 1000);

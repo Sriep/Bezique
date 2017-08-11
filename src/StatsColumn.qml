@@ -57,7 +57,7 @@ ColumnLayout {
           } // Text
       } // Rectangle
   }
-/*
+
   Rectangle {
       Layout.alignment: Qt.AlignBottom
       color: root.backColor;
@@ -66,5 +66,5 @@ ColumnLayout {
           color: "white"
           text : gameData.humanPlayer.score.toString()
       }
-  }*/
+  }
 }

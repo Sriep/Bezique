@@ -73,7 +73,7 @@ bool BeziqueMatch::saveMatch() const
 */
     QSettings settings;
     QByteArray ba;
-    ba = saveDoc.toJson(QJsonDocument::Indented);//(QJsonDocument::Compact);
+    ba = saveDoc.toJson(QJsonDocument::Compact);//(QJsonDocument::Indented);
     settings.setValue("data/gameData", QVariant(ba));
 
     return true;

@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QSettings>
@@ -13,8 +14,11 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+    //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //QGuiApplication app(argc, argv);
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication app(argc, argv);
+
     app.setOrganizationName("BeziqueGame");
     app.setOrganizationDomain("https://github.com/Sriep/Bezique");
     app.setApplicationName("Bezique");
@@ -29,7 +33,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<BeziqueHand>("Bezique", 1,0, "BeziqueHand");
     qmlRegisterType<Card>("Bezique", 1,0, "Card");
     qmlRegisterType<BeziqueMatch>("Bezique", 1,0, "BeziqueMatch");
-
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));

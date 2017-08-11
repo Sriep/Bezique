@@ -1,8 +1,6 @@
 #include "aiendplay.h"
 
 
-
-
 AiEndPlay::AiEndPlay(QList<Card *> max
                      , QList<Card *> min
                      , Card::Suit trumps

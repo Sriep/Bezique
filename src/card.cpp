@@ -101,8 +101,8 @@ void Card::copyCard(const Card &card)
 
 void Card::clearCard()
 {
-    rank = Rank::NumRanks;
-    suit  = Suit::NumSuits;
+    setRank(Rank::NumRanks);
+    setSuit(Suit::NumSuits);
     cardId = -1;
     setImage(emptyBitmap);
     link = EMPTY;
@@ -238,15 +238,15 @@ void Card::setCanFourKind(bool value)
 
 void Card::read(const QJsonObject &json)
 {
-    rank = json["rank"].toInt();
-    suit = json["suit"].toInt();
-    imageFile = json["imageFile"].toString();
+    setRank(json["rank"].toInt());
+    setSuit(json["suit"].toInt());
+    setImage(json["imageFile"].toString());
     link = json["link"].toInt();
-    hasMarried = json["hasMarried"].toBool();
-    hasBeziqued = json["hasBeziqued"].toBool();
-    hasDoubleBeziqued = json["hasDoubleBeziqued"].toBool();
-    hasFlushed = json["hasFlushed"].toBool();
-    hasFourKinded = json["hasFourKinded"].toBool();
+    setHasMarried(json["hasMarried"].toBool());
+    setHasBeziqued(json["hasBeziqued"].toBool());
+    setHasDoubleBeziqued(json["hasDoubleBeziqued"].toBool());
+    setHasFlushed(json["hasFlushed"].toBool());
+    setHasFourKinded(json["hasFourKinded"].toBool());
 }
 
 void Card::write(QJsonObject &json) const
