@@ -13,7 +13,7 @@ void BeziqueDeck::shuffle()
     const unsigned int deckSize = deck.size();
     for ( unsigned int i = 0 ; i < deckSize - 1 ; i++ )
     {
-        int rndIndex = rand() % (deckSize - i) + i ;
+        int rndIndex = qrand() % (deckSize - i) + i ;
         int temp = deck[rndIndex];
         deck[rndIndex] = deck[i];
         deck[i] = temp;

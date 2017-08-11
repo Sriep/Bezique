@@ -1,6 +1,7 @@
 #include <QThread>
 #include <QDebug>
 #include <cstdlib>
+#include <QtGlobal>
 
 #include "player.h"
 #include "gamedata.h"
@@ -122,17 +123,12 @@ void GameData::continueGame()
 
 void GameData::cutForDeal()
 { 
-    //aiPlayer->setOpponent(humanPlayer);
-    //humanPlayer->setOpponent(aiPlayer);
-    //activePlayer = aiPlayer;
-    //emit deckCut();
-
     aiPlayer->setOpponent(humanPlayer);
     humanPlayer->setOpponent(aiPlayer);
-    activePlayer = aiPlayer;
-    //int r = std::rand();
-    //int rr = r % 2;
-    //activePlayer = (rr==0) ? aiPlayer : humanPlayer;
+    //activePlayer = aiPlayer;
+    int r = qrand();
+    int rr = r % 2;
+    activePlayer = (rr==0) ? aiPlayer : humanPlayer;
     /*if (r == 0)
     {
         activePlayer = aiPlayer;
@@ -295,9 +291,9 @@ void GameData::humanMeld(bool meldMade, int index, bool meldRow)
         humanPlayer->meldCard(humanPlayer->getHand()->getLink(index, meldRow)
                               , trumps
                               , meldedSeven);
-        if (humanPlayer->canMeld())
-            emit waitingForMeld();
-        else
+        //if (humanPlayer->canMeld())
+        //    emit waitingForMeld();
+        //else
             emit drawing();
     }
     else
