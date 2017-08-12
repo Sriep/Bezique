@@ -41,6 +41,7 @@ public:
     Q_INVOKABLE void humanMeld(bool meldMade, int index = NO_MELD, bool meldRow = false);
     Q_INVOKABLE void finishTrick();
     Q_INVOKABLE bool isGameInProgress();
+    //Q_INVOKABLE void setUpNextTrick();
 
     Player *getHumanPlayer() const;
     void setHumanPlayer(Player *value);
@@ -67,7 +68,7 @@ public:
     int winningThreshold() const;
 
 public slots:
-    Q_INVOKABLE void scoreEndTrick();
+    Q_INVOKABLE void finishEndTrick();
     void setWinningThreshold(int winningThreshold);
 
 signals:
@@ -100,6 +101,8 @@ signals:
     void cardsInStockChanged();
     void playEndTrick();
     void drawing();
+    Q_INVOKABLE void inspectedEndCards();
+
     void readInGame();
     void setUpNewGame();
     //void cardsChanged();
@@ -112,6 +115,7 @@ private slots:
     //void leadEndTrick();
     void followToTrick();
     void meld();
+    void inspect();
     void endHand();
     void endGame();
     void readIn();
@@ -122,6 +126,7 @@ private:
     void checkSeven(Card* aisCard, Player* activePlayer);
     void ResetBoardForEndgame();
     void resetGameData();
+    void drawFromStock();
 
     // qml properties
     Card* faceCard = NULL;

@@ -60,18 +60,18 @@ Item {
         onOkClicked: {
             visible = false;
         }
-    }
+    }*/
     Connections {
         target: gameData
         onUserMessage: {
-            //useInfoBox.text = text
-            //useInfoBox.detailedText  = detailedText
-            //useInfoBox.informativeText  = informativeText
-            //useInfoBox.visible = true;
+            useInfoBox.text = text
+            useInfoBox.detailedText  = detailedText
+            useInfoBox.informativeText  = informativeText
+            useInfoBox.visible = true;
             console.log("user Message signal");
         }
     }
-*/
+
     Rectangle {
         width: parent.width; height: parent.height;
         color: root.backColor;
@@ -97,8 +97,11 @@ Item {
                 } else if (gameData.waitNextTrick
                            && gameData.isEndgame) {
                     gameData.waitNextTrick = false;
-                    gameData.statusMessage = ""
-                    gameData.scoreEndTrick();
+                    gameData.statusMessage = "";
+                    gameData.finishEndTrick();
+                    //gameData.inspectedEndCards();
+                    //gameData.setUpNextTrick();
+                    //gameData.scoreEndTrick();
                 }
             }
         }
@@ -221,6 +224,10 @@ Item {
                 drawCard = true;
                 statusMessage = "Draw";
             }
+            //onWaitFinishEndTrick {
+            //    waitFinishEndTrick = true;
+            //    status = "Finish trick"
+            //}
 
             humanPlayer: Player {
                 id: humanPlayer

@@ -84,6 +84,11 @@ void GameData::meldSeven()
     meldedSeven = true;
 }
 
+void GameData::inspect()
+{
+
+}
+
 Player *GameData::getHumanPlayer() const
 {
     return humanPlayer;
@@ -126,23 +131,23 @@ void GameData::cutForDeal()
     aiPlayer->setOpponent(humanPlayer);
     humanPlayer->setOpponent(aiPlayer);
     //activePlayer = aiPlayer;
-    int r = qrand();
-    int rr = r % 2;
-    activePlayer = (rr==0) ? aiPlayer : humanPlayer;
-    /*if (r == 0)
+    int r = qrand() % 2;
+    //int rr = r % 2;
+    //activePlayer = (rr==0) ? aiPlayer : humanPlayer;
+    if (r == 0)
     {
         activePlayer = aiPlayer;
-        //emit userMessage("Cut for deal"
-        //            ,"That means you play first"
-        //            ,"Your opponent won the cut for deal");
+        emit userMessage("Cut for deal"
+                    ,"That means you play first"
+                    ,"Your opponent won the cut for deal");
     }
     else
     {
         activePlayer = humanPlayer;
-        //emit userMessage("Cut for deal"
-         //           ,"That means your opponet plays first"
-         //           ,"You won the cut for deal");
-    }*/
+        emit userMessage("Cut for deal"
+                    ,"That means your opponet plays first"
+                    ,"You won the cut for deal");
+    }
     emit deckCut();
 }
 
@@ -206,7 +211,7 @@ void GameData::followToTrick()
 
 void GameData::cardPlayed(int index, bool melded)
 {
-        if (!activePlayer->cardExists(index, melded))
+    if (!activePlayer->cardExists(index, melded))
         emit waitingForCard();
     else if (isPlayFirstCard)
     {
@@ -308,10 +313,28 @@ void GameData::finishTrick()
 
     humansCard = NULL;
     aisCard = NULL;
+    //if (!isEndgame)
+    drawFromStock();
 
+    if (activePlayer->won())
+        emit gameOver(!activePlayer->isAi());
+
+    humanPlayer->getHand()->syncHands();
+    aiPlayer->getHand()->syncHands();
     humanPlayer->dump();
     aiPlayer->dump();
+    beziqueMatch->trickOver();
 
+    if (getDeck()->empty())
+    {
+        ResetBoardForEndgame();
+    }
+    else
+        emit melded();
+}
+
+void GameData::drawFromStock()
+{
     int aiCardId = getDeck()->dealTop();
     aiPlayer->giveCard(aiCardId);
     humanPlayer->getUnseen().haveSeen(aiCardId);
@@ -321,22 +344,6 @@ void GameData::finishTrick()
     aiPlayer->getUnseen().haveSeen(humanCardId);
     qDebug() << "Deck size: " << getDeck()->size();
     setCardsInStock(getDeck()->size());
-
-    humanPlayer->getHand()->syncHands();
-    aiPlayer->getHand()->syncHands();
-
-    humanPlayer->dump();
-    aiPlayer->dump();
-    beziqueMatch->trickOver();
-
-    if (activePlayer->won())
-        emit gameOver(!activePlayer->isAi());
-    else if (getDeck()->empty())
-    {
-        ResetBoardForEndgame();
-    }
-    else
-        emit melded();
 }
 
 bool GameData::isGameInProgress()
@@ -412,10 +419,12 @@ void GameData::switchActivePlayer()
     activePlayer = activePlayer == aiPlayer ? humanPlayer : aiPlayer;
 }
 
-void GameData::scoreEndTrick()
+void GameData::finishEndTrick()
 {
     if (trickOver) return;
+    emit trickFinished();
     trickOver = true;
+
     if (activePlayer == aiPlayer )
         activePlayer = humansCard->beats(*aisCard, trumps) ? humanPlayer : aiPlayer;
     else
@@ -426,8 +435,12 @@ void GameData::scoreEndTrick()
     if (Card::Ace == aisCard->getRank() || Card::Ten == aisCard->getRank())
         activePlayer->incScore(10);
 
+    humansCard = NULL;
+    aisCard = NULL;
+
     if (activePlayer->won())
         emit gameOver(!activePlayer->isAi());
+
     if (activePlayer->handEmpty())
     {
         activePlayer->incScore(10);
@@ -436,11 +449,12 @@ void GameData::scoreEndTrick()
         else
             emit handOver();
     }
-    beziqueMatch->trickOver();
 
     humanPlayer->getHand()->syncHands();
     aiPlayer->getHand()->syncHands();
-    emit trickFinished();
+    beziqueMatch->trickOver();
+
+    emit inspectedEndCards();
 }
 
 void GameData::setWinningThreshold(int winningThreshold)

@@ -210,18 +210,24 @@ bool BeziqueHand::canMeldJack(int index, int trumps) const
                 }
                 if (cards[i]->getSuit() == trumps)
                 {
-                    if (!cards[i]->canMarry)
-                        flush[1] = true;
-                    else if (cards[i]->hasMarried)
+                    //if (!cards[i]->canMarry)
+                    //    flush[1] = true;
+                    //else
+                    if (cards[i]->hasMarried)
                         hasRoyalQueenMarried = true;
+
+                    if (cards[i]->getSuit() == trumps
+                            && !cards[i]->hasFlushed)
+                        flush[cards[i]->getRank() - CONVERT_FLUSH_INDEX] = true;
                 }
+                break;
             case Card::Rank::King:
                 if (cards[i]->getSuit() == trumps && cards[i]->hasMarried)
                         hasRoyalKingMarried = true;
             case Card::Rank::Ten:
             case Card::Rank::Ace:
                 if (cards[i]->getSuit() == trumps
-                        && false == cards[i]->canMarry)
+                        && false == cards[i]->hasFlushed)
                     flush[cards[i]->getRank() - CONVERT_FLUSH_INDEX] = true;
             default:
                 break;

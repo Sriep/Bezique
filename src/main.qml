@@ -19,12 +19,12 @@ ApplicationWindow {
     property int aiScore : 0//userSettings.aiScore
     property int gameTarget : 1000
     property int toolbarHeight : toolbar.height
-/*
+
     UseInfoBox {
         id: useInfoBox
         //buttons: MessageDialog.Ok
     }
-*/
+
     ToolBar {
         id: toolbar
         width: parent.width
@@ -126,7 +126,7 @@ ApplicationWindow {
                             gameBoard.continueGame();
                             mainDisplay.currentIndex = 1;
                             console.log("Contnue");
-      /*
+
                             if (appwin.gameTarget === selectButtons.changedGameTarget) {
                                 gameBoard.continueGame();
                                 mainDisplay.currentIndex = 1;
@@ -139,7 +139,7 @@ ApplicationWindow {
                                     + "change the winning thresold back to "
                                     + "its original value of ") + appwin.gameTarget
                                 useInfoBox.visible = true;
-                            }*/
+                            }
                         }
                     }
                     Button {
@@ -161,7 +161,7 @@ ApplicationWindow {
                         onClicked: Qt.quit();
                     }
                 }
-                /*
+
                 RowLayout {
                     id: rowSetWinningThreshold
                     //visible: false
@@ -171,21 +171,24 @@ ApplicationWindow {
                     TextField {
                         id: setWinningThreshold
                         text: appwin.gameTarget
-                        validator: IntValidator{bottom: 10; top: 2000;}
+                        validator: IntValidator{bottom: 10; top: 5000;}
                         cursorVisible: true
                         selectByMouse: true
                         //visible: false
                         onEditingFinished: {
+                            console.log("acceptableInput",acceptableInput)
+                            console.log("text",text)
                             if (acceptableInput) {
                                 flickOptions.changedGameTarget = parseInt(text);
                                 console.log("new win threshold", flickOptions.changedGameTarget);
-                                //appwin.gameTarget = parseInt(text);
+                                appwin.gameTarget = parseInt(text);
                             }
+                            console.log("appwin.gameTarget",appwin.gameTarget)
                         }
-                    }
-                }
-            }*/
-        }
+                    } // TextField
+                } // RowLayout
+            } // ColumnLayout
+        //} //Flickable
         BeziqueView {
             id: gameBoard
             property string bottomName: bottomName
@@ -246,7 +249,8 @@ ApplicationWindow {
                       + appwin.playerName
                       + ": " + appwin.playerScore
                       + "  " + appwin.aiName
-                      + ": " + appwin.aiScore;
+                      + ": " + appwin.aiScore
+                      + "  To " + appwin.gameTarget + " pts";
         return titleBar;
     }
 

@@ -14,6 +14,7 @@ RowLayout {
             width: root.cardWidth * 0.95;
             height: root.cardHeight * 0.95;
             source: gameData.stockImage
+            visible: gameData.stockImage !== root.emptyImage
         }
     }
     Rectangle {
@@ -23,6 +24,7 @@ RowLayout {
             width: root.cardWidth * 0.95;
             height: root.cardHeight * 0.95;
             source: gameData.faceCard.image
+            visible: gameData.faceCard.image !== root.emptyImage
         }
     }
 
