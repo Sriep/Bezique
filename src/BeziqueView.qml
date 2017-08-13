@@ -187,7 +187,7 @@ Item {
                 target: root
                 onContinueGame: {
                     console.log("onContinueGame");
-                    //gameData.winningThreshold = appwin.gameTarget;
+                    /*
                     if (appwin.gameTarget !== gameData.winningThreshold)
                     {
                         useInfoBox.text = qsTr("Old Game target used")
@@ -198,7 +198,7 @@ Item {
                             + " The new value of " + appwin.gameTarget
                             + " will be aplied to future matchs.")
                         useInfoBox.visible = true;
-                    }
+                    }*/
                     gameData.continueGame();
                 }
             }

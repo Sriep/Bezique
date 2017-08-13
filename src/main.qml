@@ -55,11 +55,16 @@ ApplicationWindow {
                     MenuItem {
                         text: qsTr("New match")
                         onTriggered: {
-                           startNewMatch();
+                            startNewMatch();
                         }
                     }
-
                     /*
+                    MenuItem {
+                        text: qsTr("Help")
+                        onTriggered: {
+                            helpDialog.open();
+                        }
+                    }
                     MenuItem {
                         text: qsTr("Main menu")
                         onTriggered: {
@@ -142,13 +147,6 @@ ApplicationWindow {
                         text: "New"
                         onClicked: {
                             startNewMatch();
-                            /*
-                            console.log("new game target", appwin.gameTarget)
-                            appwin.playerScore = 0
-                            appwin.aiScore = 0
-                            gameBoard.newGame();
-                            mainDisplay.currentIndex = 1;
-                            console.log("New");*/
                         }
                     }
                     Button {
@@ -162,7 +160,7 @@ ApplicationWindow {
                     id: rowSetWinningThreshold
                     //visible: false
                     Label {
-                        text: qsTr("Winning Threshold")
+                        text: qsTr("Winning Threshold.")
                     }
                     TextField {
                         id: setWinningThreshold
@@ -176,6 +174,19 @@ ApplicationWindow {
                             console.log("text",text)
                             if (acceptableInput) {
                                 console.log("new win threshold", selectButtons.changedGameTarget);
+                                if (appwin.gameTarget !== parseInt(text))
+                                {
+                                    useInfoBox.text = qsTr("Game target used")
+                                    useInfoBox.informativeText  = qsTr("Changed game "
+                                        + "targets points to be applied to next"
+                                        +" match started.")
+                                    useInfoBox.detailedText  = qsTr("Old target of "
+                                        + gameData.winningThreshold + " still applies."
+                                        + " The old value of " + appwin.gameTarget
+                                        + " has been changed to "
+                                        + parseInt(text) + ".")
+                                    useInfoBox.visible = true;
+                                }
                                 appwin.gameTarget = parseInt(text);
                             }
                             console.log("appwin.gameTarget",appwin.gameTarget)
@@ -202,9 +213,8 @@ ApplicationWindow {
             visible: false
             standardButtons: StandardButton.Yes | StandardButton.No
             onYes: {
-                gameBoard.newGame();
                 visible = false;
-                mainDisplay.currentIndex = 1;
+                startNewGame();
             }
             onNo: {
                Qt.quit();;
@@ -212,11 +222,15 @@ ApplicationWindow {
         }
 
         Rectangle {
-            color: "blue"
+            color: "green"
         }
 
     } //StackLayout
-
+/*
+    HelpDialog {
+        id: helpDialog
+    }
+*/
     Settings {
         category: "display"
         property alias width: appwin.width
@@ -240,12 +254,16 @@ ApplicationWindow {
     }
 */
     function startNewMatch() {
-        console.log("new game target", appwin.gameTarget)
+        console.log("New match");
         appwin.playerScore = 0
         appwin.aiScore = 0
+        startNewGame();
+    }
+
+    function startNewGame() {
+        console.log("new game target", appwin.gameTarget)
         gameBoard.newGame();
         mainDisplay.currentIndex = 1;
-        console.log("New");
     }
 
     function getTitleBar () {

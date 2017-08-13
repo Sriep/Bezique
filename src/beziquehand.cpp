@@ -865,7 +865,7 @@ void BeziqueHand::syncHands()
 
 void BeziqueHand::setCanFollowCards(Card *oppCard, bool isEndgame, int trumps)
 {
-    for ( int i = 0 ; i < cards.size() ; i++ )
+    /*for ( int i = 0 ; i < cards.size() ; i++ )
     {
         cards[i]->setCanPlay(true);
     }
@@ -882,8 +882,8 @@ void BeziqueHand::setCanFollowCards(Card *oppCard, bool isEndgame, int trumps)
             hiddedCards[i]->setCanPlay(false);
         else
             hiddedCards[i]->setCanPlay(true);
-    }
-
+    }*/
+    setCanPlayAllCards();
 
     if (isEndgame)
     {
@@ -913,6 +913,28 @@ void BeziqueHand::setCanFollowCards(Card *oppCard, bool isEndgame, int trumps)
                 }
             }
         }
+    }
+}
+
+void BeziqueHand::setCanPlayAllCards()
+{
+    for ( int i = 0 ; i < cards.size() ; i++ )
+    {
+        cards[i]->setCanPlay(true);
+    }
+    for ( int i = 0 ; i < meldedCards.size() ; i++ )
+    {
+        if (meldedCards[i]->isCleard())
+            meldedCards[i]->setCanPlay(false);
+        else
+            meldedCards[i]->setCanPlay(true);
+    }
+    for ( int i = 0 ; i < hiddedCards.size() ; i++ )
+    {
+        if (hiddedCards[i]->isCleard())
+            hiddedCards[i]->setCanPlay(false);
+        else
+            hiddedCards[i]->setCanPlay(true);
     }
 }
 

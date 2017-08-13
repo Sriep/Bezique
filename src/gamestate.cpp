@@ -37,8 +37,8 @@ void GameState::init()
     //QState *finishEndTrick = new QState();
     QState *inspectEndTrick = new QState();
     QState *readIn = new QState();
-
-    QFinalState *cleanUp = new QFinalState();
+    QState *cleanUp = new QState();
+    //QFinalState *cleanUp = new QFinalState();
 
     QObject::connect(initalState, SIGNAL(entered()), this->gameData, SLOT(initaliseGame()));
     //QObject::connect(this->gameData, SIGNAL(restartSM()),
@@ -82,6 +82,7 @@ void GameState::init()
     readIn->addTransition(this->gameData, SIGNAL(nextEndTrick()), leadEndTrick);
 
     initalState->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    readIn->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
     cutForDeal->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
     dealCards->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
     leadToTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
@@ -90,6 +91,7 @@ void GameState::init()
     leadEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
     followEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
     inspectEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    cleanUp->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
 
     this->addState(initalState);
 

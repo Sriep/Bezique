@@ -51,7 +51,7 @@ Rectangle {
         onClicked: {
             console.log("gameData.waitingForCard",gameData.waitingForCard);
             console.log("gameData.humanMelding",gameData.humanMelding);
-            if (gameData.waitingForCard) {
+            if (gameData.waitingForCard && cardImage.canPlay) {
                 gameData.waitingForCard = false;
                 gameData.cardPlayed(rowPos, melded);                
             } else if (gameData.humanMelding) {
@@ -59,6 +59,6 @@ Rectangle {
                 gameData.humanMelding = false;
             }
         }
-    }
+    }    
 }
 

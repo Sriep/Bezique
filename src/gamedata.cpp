@@ -203,6 +203,7 @@ void GameData::leadToTrick()
     else
     {
         isPlayFirstCard = true;
+        humanPlayer->setCanLeadCards();
         emit waitingForCard();
     }
 }
@@ -509,7 +510,6 @@ void GameData::read(const QJsonObject &json)
     isHandOver = false;
     isGameOver = false;
     reset = false;
-    isEndgame = false;
 
     //emit readInGame();
     QString gameState = json["gameState"].toString();
@@ -531,11 +531,9 @@ void GameData::read(const QJsonObject &json)
     else if (gameState == GS_ENDGAME)
     {
         emit nextEndTrick();
-        isEndgame = false;
     }
     else if (gameState == GS_EARLY_GAME)
     {
-        isEndgame = true;
         emit nextTrick();
     }
 }

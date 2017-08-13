@@ -125,5 +125,6 @@
         <file>content/gfx/menu@4x.png</file>
         <file>content/gfx/menuW@4x.png</file>
         <file>UseInfoBox.qml</file>
+        <file>HelpDialog.qml</file>
     </qresource>
 </RCC>

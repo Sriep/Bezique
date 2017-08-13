@@ -57,6 +57,7 @@ public:
     void syncIndex(int index);
     void syncHands();
     void setCanFollowCards(Card* oppCard, bool isEndgame, int trumps);
+    void setCanPlayAllCards();
 
     void dump();
     void dump(const QList<Card *> &h);
