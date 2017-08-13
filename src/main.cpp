@@ -3,6 +3,8 @@
 #include <QQmlApplicationEngine>
 #include <QSettings>
 #include <QDebug>
+#include <QTime>
+#include <QtGlobal>
 
 #include "beziquehand.h"
 #include "beziquematch.h"
@@ -27,6 +29,11 @@ int main(int argc, char *argv[])
     QSettings settings;
     QString fileName = settings.fileName();
     qDebug() << fileName;
+
+    QTime now = QTime::currentTime();
+    int seed = now.msec();
+    qDebug() << "random number seed" <<  seed;
+    qsrand(seed);
 
     qmlRegisterType<GameData>("Bezique", 1,0, "GameData");
     qmlRegisterType<Player>("Bezique", 1,0, "Player");

@@ -15,7 +15,9 @@ GameData::GameData(QQuickItem *parent)
     , game(this)
 
 {
-    init();
+    //init();
+    //resetGameData();
+    //game.start();
 }
 
 void GameData::init()
@@ -112,18 +114,31 @@ void GameData::setFaceCard(Card *value)
 
 void GameData::startNewGame()
 {
+    startingNewMatch = true;
     resetGameData();
-    game.start();
-    readingInGame = false;
+    //game.stop();
+    //game.start();
+    emit restartSM();
+    //readingInGame = false;
 }
 
 void GameData::continueGame()
 {
-    //startNewGame();
-
-    resetGameData();
-    game.start();
     readingInGame = true;
+    resetGameData();
+    //game.start();
+    emit restartSM();
+
+}
+
+void GameData::initaliseGame()
+{
+    if (readingInGame)
+        emit readInGame();
+    else if (startingNewMatch)
+        emit setUpNewGame();
+    readingInGame = false;
+    startingNewMatch = false;
 }
 
 void GameData::cutForDeal()
@@ -279,14 +294,6 @@ void GameData::readIn()
     emit handsDealt();
 }
 
-void GameData::initaliseGame()
-{
-    if (readingInGame)
-        emit readInGame();
-    else
-        emit setUpNewGame();
-    readingInGame = false;
-}
 
 // call from qml
 void GameData::humanMeld(bool meldMade, int index, bool meldRow)
@@ -349,6 +356,12 @@ void GameData::drawFromStock()
 bool GameData::isGameInProgress()
 {
     return game.isRunning();
+}
+
+void GameData::initiliseGameData()
+{
+    resetGameData();
+    game.start();
 }
 
 void GameData::ResetBoardForEndgame()

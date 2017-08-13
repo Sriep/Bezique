@@ -10,6 +10,7 @@
 BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
     : QQuickItem(parent)
 {    
+    //qsrand(time(NULL));
     /*if (restart)
     {
         setSaveAvaliable(false);

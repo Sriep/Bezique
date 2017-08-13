@@ -52,6 +52,13 @@ ApplicationWindow {
                     id: optionsMenu
                     x: parent.width - width
                     transformOrigin: Menu.TopRight
+                    MenuItem {
+                        text: qsTr("New match")
+                        onTriggered: {
+                           startNewMatch();
+                        }
+                    }
+
                     /*
                     MenuItem {
                         text: qsTr("Main menu")
@@ -86,7 +93,7 @@ ApplicationWindow {
             //property int changedGameTarget: appwin.gameTarget
             ColumnLayout {
                 id: selectButtons
-                property int changedGameTarget: appwin.gameTarget
+                //property int changedGameTarget: appwin.gameTarget
                 RowLayout {
                     Label {
                         text: "Player name"
@@ -125,34 +132,23 @@ ApplicationWindow {
                         onClicked: {
                             gameBoard.continueGame();
                             mainDisplay.currentIndex = 1;
-                            console.log("Contnue");
-
-                            if (appwin.gameTarget === selectButtons.changedGameTarget) {
-                                gameBoard.continueGame();
-                                mainDisplay.currentIndex = 1;
-                                console.log("Continue");
-                            } else {
-                                useInfoBox.text = qsTr("Continue disable")
-                                useInfoBox.informativeText  = qsTr("You can only "
-                                    + "start a new game after changing the winnint threshold.")
-                                useInfoBox.detailedText  = qsTr("To continue "
-                                    + "change the winning thresold back to "
-                                    + "its original value of ") + appwin.gameTarget
-                                useInfoBox.visible = true;
-                            }
+                            gameBoard.continueGame();
+                            mainDisplay.currentIndex = 1;
+                            console.log("Continue");
                         }
                     }
                     Button {
                         x:20
                         text: "New"
                         onClicked: {
-                            appwin.gameTarget = selectButtons.changedGameTarget
+                            startNewMatch();
+                            /*
                             console.log("new game target", appwin.gameTarget)
                             appwin.playerScore = 0
                             appwin.aiScore = 0
                             gameBoard.newGame();
                             mainDisplay.currentIndex = 1;
-                            console.log("New");
+                            console.log("New");*/
                         }
                     }
                     Button {
@@ -179,8 +175,7 @@ ApplicationWindow {
                             console.log("acceptableInput",acceptableInput)
                             console.log("text",text)
                             if (acceptableInput) {
-                                flickOptions.changedGameTarget = parseInt(text);
-                                console.log("new win threshold", flickOptions.changedGameTarget);
+                                console.log("new win threshold", selectButtons.changedGameTarget);
                                 appwin.gameTarget = parseInt(text);
                             }
                             console.log("appwin.gameTarget",appwin.gameTarget)
@@ -244,6 +239,15 @@ ApplicationWindow {
         property string gameData: ""
     }
 */
+    function startNewMatch() {
+        console.log("new game target", appwin.gameTarget)
+        appwin.playerScore = 0
+        appwin.aiScore = 0
+        gameBoard.newGame();
+        mainDisplay.currentIndex = 1;
+        console.log("New");
+    }
+
     function getTitleBar () {
         var titleBar = qsTr("Bezique. ")
                       + appwin.playerName

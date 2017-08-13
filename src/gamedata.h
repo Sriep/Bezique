@@ -41,6 +41,7 @@ public:
     Q_INVOKABLE void humanMeld(bool meldMade, int index = NO_MELD, bool meldRow = false);
     Q_INVOKABLE void finishTrick();
     Q_INVOKABLE bool isGameInProgress();
+    Q_INVOKABLE void initiliseGameData();
     //Q_INVOKABLE void setUpNextTrick();
 
     Player *getHumanPlayer() const;
@@ -104,6 +105,7 @@ signals:
     Q_INVOKABLE void inspectedEndCards();
 
     void readInGame();
+    void restartSM();
     void setUpNewGame();
     //void cardsChanged();
     void winningThresholdChanged(int winningThreshold);
@@ -150,6 +152,7 @@ private:
     bool reset = false;
     BeziqueMatch* beziqueMatch;
     bool readingInGame = false;
+    bool startingNewMatch = false;
     int m_winningThreshold = 1000;
 };
 

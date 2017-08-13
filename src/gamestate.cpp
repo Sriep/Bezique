@@ -41,6 +41,8 @@ void GameState::init()
     QFinalState *cleanUp = new QFinalState();
 
     QObject::connect(initalState, SIGNAL(entered()), this->gameData, SLOT(initaliseGame()));
+    //QObject::connect(this->gameData, SIGNAL(restartSM()),
+    //                              this->gameData, SLOT(initaliseGame()));
     initalState->addTransition(this->gameData, SIGNAL(setUpNewGame()), cutForDeal);
     initalState->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
 
@@ -79,14 +81,15 @@ void GameState::init()
     readIn->addTransition(this->gameData, SIGNAL(nextTrick()), leadToTrick);
     readIn->addTransition(this->gameData, SIGNAL(nextEndTrick()), leadEndTrick);
 
-    cutForDeal->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    dealCards->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    leadToTrick->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    followToTrick->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    meld->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    leadEndTrick->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    followEndTrick->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
-    inspectEndTrick->addTransition(this->gameData, SIGNAL(readInGame()), readIn);
+    initalState->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    cutForDeal->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    dealCards->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    leadToTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    followToTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    meld->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    leadEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    followEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
+    inspectEndTrick->addTransition(this->gameData, SIGNAL(restartSM()), initalState);
 
     this->addState(initalState);
 
@@ -101,12 +104,10 @@ void GameState::init()
 
     this->addState(leadEndTrick);
     this->addState(followEndTrick);
-    //this->addState(finishEndTrick);
     this->addState(inspectEndTrick);
 
     this->addState(cleanUp);
 
-    //this->setInitialState(cutForDeal);
     this->setInitialState(initalState);
 }
 

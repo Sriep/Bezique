@@ -187,7 +187,18 @@ Item {
                 target: root
                 onContinueGame: {
                     console.log("onContinueGame");
-                    gameData.winningThreshold = appwin.gameTarget;
+                    //gameData.winningThreshold = appwin.gameTarget;
+                    if (appwin.gameTarget !== gameData.winningThreshold)
+                    {
+                        useInfoBox.text = qsTr("Old Game target used")
+                        useInfoBox.informativeText  = qsTr("Changed game "
+                            + "targets points only apply to new matchs.")
+                        useInfoBox.detailedText  = qsTr("Old target of "
+                            + gameData.winningThreshold + " still applies."
+                            + " The new value of " + appwin.gameTarget
+                            + " will be aplied to future matchs.")
+                        useInfoBox.visible = true;
+                    }
                     gameData.continueGame();
                 }
             }
@@ -352,7 +363,15 @@ Item {
                 id: humanHidden
             }
         } //Column
+
+
+        Component.onCompleted: {
+          //  gameBoard.continueGame();
+            gameData.initiliseGameData();
+            console.log("in BeziqueMatch onCompleted");
+        }
     } // BeziqueMatch
+
 
 } // Item
 
