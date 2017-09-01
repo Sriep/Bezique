@@ -151,14 +151,14 @@ void GameData::cutForDeal()
     //activePlayer = (rr==0) ? aiPlayer : humanPlayer;
     if (r == 0)
     {
-        activePlayer = aiPlayer;
+        activePlayer = humanPlayer;
         emit userMessage("Cut for deal"
                     ,"That means you play first"
                     ,"Your opponent won the cut for deal");
     }
     else
     {
-        activePlayer = humanPlayer;
+        activePlayer = aiPlayer;
         emit userMessage("Cut for deal"
                     ,"That means your opponet plays first"
                     ,"You won the cut for deal");
