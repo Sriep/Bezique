@@ -7,9 +7,11 @@
 
 #include "beziquematch.h"
 
-BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
+BeziqueMatch::BeziqueMatch(bool , QQuickItem *parent)
     : QQuickItem(parent)
 {    
+    QSettings settings;
+    setSaveAvaliable(settings.contains("data/gameData"));
     //qsrand(time(NULL));
     /*if (restart)
     {
@@ -26,21 +28,7 @@ BeziqueMatch::BeziqueMatch(bool restart, QQuickItem *parent)
 
 bool BeziqueMatch::loadMatch()
 {
-/*    QFile loadFile(saveFormat == Json
-                   ? QStringLiteral("save.json")
-                   : QStringLiteral("save.dat"));
 
-    if (!loadFile.open(QIODevice::ReadOnly)) {
-        qWarning("Couldn't open save file.");
-        return false;
-    }
-
-    QByteArray saveData = loadFile.readAll();
-
-    QJsonDocument loadDoc(saveFormat == Json
-        ? QJsonDocument::fromJson(saveData)
-        : QJsonDocument::fromBinaryData(saveData));
-*/
     QSettings settings;
     if (!settings.contains("data/gameData"))
         return false;
@@ -55,28 +43,17 @@ bool BeziqueMatch::loadMatch()
     }
 }
 
-bool BeziqueMatch::saveMatch() const
+bool BeziqueMatch::saveMatch()
 {
     QJsonObject gameObject;
     write(gameObject);
     QJsonDocument saveDoc(gameObject);
-/*
-    QFile saveFile(saveFormat == Json
-                   ? QStringLiteral("save.json")
-                   : QStringLiteral("save.dat"));
-    if (!saveFile.open(QIODevice::WriteOnly)) {
-        qWarning("Couldn't open save file.");
-        return false;
-    }
-    saveFile.write(saveFormat == Json
-        ? saveDoc.toJson()
-        : saveDoc.toBinaryData());
-*/
+
     QSettings settings;
     QByteArray ba;
     ba = saveDoc.toJson(QJsonDocument::Compact);//(QJsonDocument::Indented);
     settings.setValue("data/gameData", QVariant(ba));
-
+    setSaveAvaliable(true);
     return true;
 }
 

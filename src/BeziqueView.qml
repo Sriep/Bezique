@@ -50,7 +50,6 @@ Item {
     property bool saveAvaliable: match.saveAvaliable
     property bool restartGame: restartGame = false
     property int toolbarHeight :0
-
     signal continueGame()
     signal newGame()
 /*
@@ -113,7 +112,7 @@ Item {
         topName: "ai"
         bottomGamesWon: 0
         topGamesWon: 0
-        saveAvaliable: false
+        //saveAvaliable: false
 
         Connections {
             target: appwin

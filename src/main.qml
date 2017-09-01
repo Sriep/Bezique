@@ -133,7 +133,8 @@ ApplicationWindow {
                 }
                 RowLayout {
                     Button {
-                        text: "Continue"
+                        text: "Continue "
+                        enabled: gameBoard.saveAvaliable
                         onClicked: {
                             gameBoard.continueGame();
                             mainDisplay.currentIndex = 1;
@@ -202,6 +203,7 @@ ApplicationWindow {
             property string bottomGamesWon: bottomGamesWon
             property int topGamesWon: topGamesWon
             property bool restartGame: restartGame = false
+            //property bool saveAvaliable: false
             //property int toolbarHeight : mainDisplay.ttoolbarHeight
          }
 

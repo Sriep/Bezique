@@ -31,7 +31,7 @@ public:
 
     BeziqueMatch(bool restart = false, QQuickItem *parent = 0);
     bool loadMatch();
-    bool saveMatch() const;
+    bool saveMatch();
 
     QString getBottomName() const;
     void setBottomName(const QString &value);
@@ -68,7 +68,7 @@ private:
     QString topName = "top";
     int bottomGamesWon = 0;
     int topGamesWon = 0;
-    bool saveAvaliable = false;
+    bool saveAvaliable = true;
 };
 
 #endif // BEZIQUEMATCH_H
