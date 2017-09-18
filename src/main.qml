@@ -18,6 +18,7 @@ ApplicationWindow {
     property int playerScore: 0//userSettings.playerScore
     property int aiScore : 0//userSettings.aiScore
     property int gameTarget : 1000
+    property int gameTargetNextGame : 1000
     property int toolbarHeight : toolbar.height
 
     UseInfoBox {
@@ -175,20 +176,21 @@ ApplicationWindow {
                             console.log("text",text)
                             if (acceptableInput) {
                                 console.log("new win threshold", selectButtons.changedGameTarget);
+                                var uib = useInfoBox;
                                 if (appwin.gameTarget !== parseInt(text))
                                 {
                                     useInfoBox.text = qsTr("Game target used")
                                     useInfoBox.informativeText  = qsTr("Changed game "
                                         + "targets points to be applied to next"
                                         +" match started.")
-                                    useInfoBox.detailedText  = qsTr("Old target of "
-                                        + gameData.winningThreshold + " still applies."
-                                        + " The old value of " + appwin.gameTarget
-                                        + " has been changed to "
-                                        + parseInt(text) + ".")
+                                    useInfoBox.detailedText  = qsTr("Old target "
+                                        + " still applies to the current match."
+                                        + " The new value of " + parseInt(text)
+                                        + " will be used for furture matches.")
                                     useInfoBox.visible = true;
                                 }
                                 appwin.gameTarget = parseInt(text);
+                                appwin.gameTargetNextGame = parseInt(text);
                             }
                             console.log("appwin.gameTarget",appwin.gameTarget)
                         }
@@ -247,6 +249,7 @@ ApplicationWindow {
         property alias playerScore: appwin.playerScore
         property alias aiScore : appwin.aiScore
         property alias gameTarget : appwin.gameTarget
+        property alias gameTargetNextGame : appwin.gameTargetNextGame
     }
 /*
     Settings {

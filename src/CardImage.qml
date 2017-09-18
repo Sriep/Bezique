@@ -54,7 +54,7 @@ Rectangle {
             if (gameData.waitingForCard && cardImage.canPlay) {
                 gameData.waitingForCard = false;
                 gameData.cardPlayed(rowPos, melded);                
-            } else if (gameData.humanMelding) {
+            } else if (gameData.humanMelding && cardImage.canMeld) {
                 gameData.humanMeld(canMeld, rowPos, melded);
                 gameData.humanMelding = false;
             }
