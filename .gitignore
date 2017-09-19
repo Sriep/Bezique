@@ -75,3 +75,8 @@ buld*/
 .~lock.*
 *#
 thumbs.db
+
+Inclued binares
+!bin\Android\Bezique.apk
+!bin\Linux\Bezique.AppImage
+!bin\Windows\Bezique_Setup.exe
