@@ -69,7 +69,7 @@ buld*/
 # Binaries
 # --------
 *.dll
-*.exe
+#*.exe
 
 .~*
 .~lock.*
@@ -79,4 +79,5 @@ thumbs.db
 Inclued binares
 !bin\Android\Bezique.apk
 !bin\Linux\Bezique.AppImage
+!bin\Windows
 !bin\Windows\Bezique_Setup.exe
