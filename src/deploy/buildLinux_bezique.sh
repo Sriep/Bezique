@@ -17,7 +17,7 @@ MAKE_DIR=/usr/bin
 LINUXDEPLOY=$HOME/software/linuxdeployqt
 
 # Set internal variables
-SRCDIR=$BUILD_DIR/$PROJECTNAME/Src
+SRCDIR=$BUILD_DIR/$PROJECTNAME/src
 PATH=$QT_DIR/bin:$QT_CREATOR_DIR/bin:$MAKE_DIR:$PATH
 RELEASE_DIR=$SRCDIR/release
 QML_DIR=$SRCDIR
@@ -41,6 +41,6 @@ make clean
 
 # Build AppImage
 mkdir $RELEASE_DIR/plugins
-cp -r $QT_DIR/plugins/geoservices $RELEASE_DIR/plugins/geoservices
-cp -r $QT_DIR/plugins/xcbglintegrations $RELEASE_DIR/plugins/xcbglintegrations
+cp -r $QT_DIR/plugins/platforms $RELEASE_DIR/plugins/platforms
+#cp -r $QT_DIR/plugins/xcbglintegrations $RELEASE_DIR/plugins/xcbglintegrations
 $LINUXDEPLOY  $RELEASE_DIR/$PROJECTNAME -qmldir=$QML_DIR -appimage -bundle-non-qt-libs -no-translations 
