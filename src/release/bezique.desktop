@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Bezique
+Exec=AppRun %F
+Icon=bezique
+Comment=Plays bezique against the AI
+Terminal=false
+Categories=Game;
+

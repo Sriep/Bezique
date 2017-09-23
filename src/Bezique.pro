@@ -71,7 +71,8 @@ DISTFILES += \
     deploy/InfoAfterWin.txt \
     deploy/InfoBeforeWin.txt \
     deploy/LicenseFileWin.txt \
-    release/bezique.png
+    release/bezique.png \
+    release/bezique.desktop
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
