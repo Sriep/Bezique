@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Bezique
+Name=Application
 Exec=AppRun %F
-Icon=bezique
-Comment=Plays bezique against the AI
+Icon=default
+Comment=Edit this default file
 Terminal=true
