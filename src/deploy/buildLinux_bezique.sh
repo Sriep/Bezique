@@ -42,5 +42,4 @@ make clean
 # Build AppImage
 mkdir $RELEASE_DIR/plugins
 cp -r $QT_DIR/plugins/platforms $RELEASE_DIR/plugins/platforms
-#cp -r $QT_DIR/plugins/xcbglintegrations $RELEASE_DIR/plugins/xcbglintegrations
 $LINUXDEPLOY  $RELEASE_DIR/$PROJECTNAME -qmldir=$QML_DIR -appimage -bundle-non-qt-libs -no-translations 
