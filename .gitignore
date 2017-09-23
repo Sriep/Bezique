@@ -72,6 +72,8 @@ buld*/
 #*.exe
 
 .~*
+*.*~
+*~
 .~lock.*
 *#
 thumbs.db
