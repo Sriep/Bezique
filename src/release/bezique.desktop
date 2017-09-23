@@ -2,7 +2,7 @@
 Type=Application
 Name=Bezique
 Exec=AppRun %F
-Icon=bezique
+Icon=bezique.png
 Comment=Plays bezique against the AI
 Terminal=false
 Categories=Game;
