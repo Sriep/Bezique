@@ -72,7 +72,18 @@ DISTFILES += \
     deploy/InfoBeforeWin.txt \
     deploy/LicenseFileWin.txt \
     release/bezique.png \
-    release/bezique.desktop
+    release/bezique.desktop \
+    ios/BeziqueIcon57x57.png \
+    ios/BeziqueIcon67.png \
+    ios/BeziqueIcon120.png \
+    ios/BeziqueIcon152.png \
+    ios/BeziqueIcon167.png \
+    ios/BeziqueIcon180x120.png \
+    ios/BeziqueIcon500x1024.png \
+    ios/BeziqueIcon512.png \
+    ios/BeziqueIcon512x512.png \
+    ios/BeziqueIcon1024.png \
+    ios/BeziqueIcon1280x720.png
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
