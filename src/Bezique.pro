@@ -83,11 +83,13 @@ DISTFILES += \
     ios/BeziqueIcon512.png \
     ios/BeziqueIcon512x512.png \
     ios/BeziqueIcon1024.png \
-    ios/BeziqueIcon1280x720.png
+    ios/BeziqueIcon1280x720.png \
+    ios/Info.plist
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 ios {
     ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
     QMAKE_BUNDLE_DATA += ios_icon
+    QMAKE_INFO_PLIST = ios/Info.plist
 }
