@@ -83,3 +83,5 @@ thumbs.db
 #!bin\Linux\Bezique.AppImage
 #!bin\Windows
 #!bin\Windows\Bezique_Setup.exe
+
+asset_catalog_compiler.Info.plist
