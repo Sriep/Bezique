@@ -8,6 +8,25 @@
 	<string>Bezique</string>
 	<key>CFBundleGetInfoString</key>
 	<string>Created by Qt/QMake</string>
+        <key>CFBundleIconFile</key>
+        <string>BeziqueIcon1024.png</string>
+        <key>CFBundleIconName</key>
+        <string>BeziqueIcon1024</string>
+        <key>CFBundleIcons</key>
+        <dict>
+                <key>CFBundlePrimaryIcon</key>
+                <dict>
+                        <key>CFBundleIconFiles</key>
+                        <array>
+                                <string>BeziqueIcon120.png</string>
+                                <string>BeziqueIcon152.png</string>
+                                <string>BeziqueIcon167.png</string>
+                                <string>BeziqueIcon512.png</string>
+                                <string>BeziqueIcon76.png</string>
+                                <string>BeziqueIcon1024.png</string>
+                        </array>
+                </dict>
+        </dict>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleName</key>
