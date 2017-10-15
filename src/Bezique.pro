@@ -76,4 +76,7 @@ DISTFILES += \
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-
+ios {
+    ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
+    QMAKE_BUNDLE_DATA += ios_icon
+}
