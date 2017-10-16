@@ -92,6 +92,7 @@ ios {
     ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_INFO_PLIST = ios/Info.plist
-    QMAKE_ASSET_CATALOGS = $$PWD/ios
-    QMAKE_ASSET_CATALOGS_APP_ICON = "BeziqueIcon1024.png"
+    PRODUCT_BUNDLE_IDENTIFIER = com.sriep.bezique
+    #QMAKE_ASSET_CATALOGS = $$PWD/ios
+    #QMAKE_ASSET_CATALOGS_APP_ICON = "BeziqueIcon1024.png"
 }
