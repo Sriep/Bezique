@@ -91,6 +91,8 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ios {
     ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
     QMAKE_BUNDLE_DATA += ios_icon
+    ios_icon2.files = $$files($$PWD/ios/Icon-*.png)
+    QMAKE_BUNDLE_DATA += ios_icon2
     QMAKE_INFO_PLIST = ios/Info.plist
     PRODUCT_BUNDLE_IDENTIFIER = com.sriep.bezique
     #QMAKE_ASSET_CATALOGS = $$PWD/ios
