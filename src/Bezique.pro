@@ -13,7 +13,19 @@ HEADERS += \
     aievaluate.h \
     aiendplay.h \
     scores.h \
-    beziquematch.h
+    beziquematch.h \
+    aiendplay.h \
+    aievaluate.h \
+    beziqueDeck.h \
+    beziquehand.h \
+    beziquematch.h \
+    card.h \
+    gamedata.h \
+    gamestate.h \
+    player.h \
+    scores.h \
+    test.h \
+    unseencards.h
 SOURCES += main.cpp \
     beziqueDeck.cpp \
     player.cpp \
@@ -26,7 +38,22 @@ SOURCES += main.cpp \
     aievaluate.cpp \
     aiendplay.cpp \
     scores.cpp \
-    beziquematch.cpp
+    beziquematch.cpp \
+    aiendplay.cpp \
+    aievaluate.cpp \
+    aiplayer_copy.cpp \
+    beziqueDeck.cpp \
+    beziquehand.cpp \
+    beziquematch.cpp \
+    card.cpp \
+    gamedata.cpp \
+    gamedataBad.cpp \
+    gamestate.cpp \
+    main.cpp \
+    player.cpp \
+    scores.cpp \
+    test.cpp \
+    unseencards.cpp
 
 RESOURCES += qml.qrc
 
@@ -73,27 +100,46 @@ DISTFILES += \
     deploy/LicenseFileWin.txt \
     release/bezique.png \
     release/bezique.desktop \
-    ios/BeziqueIcon57x57.png \
     ios/BeziqueIcon67.png \
-    ios/BeziqueIcon120.png \
-    ios/BeziqueIcon152.png \
-    ios/BeziqueIcon167.png \
-    ios/BeziqueIcon180x120.png \
-    ios/BeziqueIcon500x1024.png \
-    ios/BeziqueIcon512.png \
-    ios/BeziqueIcon512x512.png \
-    ios/BeziqueIcon1024.png \
-    ios/BeziqueIcon1280x720.png \
-    ios/Info.plist
+    ios/Info.plist \
+    ios/Images.xcassets/AppIcon.appiconset/Contents.json \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-24@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-27.5@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-29@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-29@3x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-40@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-44@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-86@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-98@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@2x-1.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@2x-1.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@2x-1.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png \
+    ios/Images.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 ios {
-    ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
-    QMAKE_BUNDLE_DATA += ios_icon
-    ios_icon2.files = $$files($$PWD/ios/Icon-*.png)
-    QMAKE_BUNDLE_DATA += ios_icon2
-    QMAKE_INFO_PLIST = ios/Info.plist
+    #ios_icon.files = $$files($$PWD/ios/BeziqueIcon*.png)
+    #QMAKE_BUNDLE_DATA += ios_icon
+    #ios_icon2.files = $$files($$PWD/ios/Icon-*.png)
+    #QMAKE_BUNDLE_DATA += ios_icon2
+    #QMAKE_INFO_PLIST = ios/Info.plist
+    QMAKE_ASSET_CATALOGS = $$PWD/ios/Images.xcassets
+    QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
     PRODUCT_BUNDLE_IDENTIFIER = com.sriep.bezique
     #QMAKE_ASSET_CATALOGS = $$PWD/ios
     #QMAKE_ASSET_CATALOGS_APP_ICON = "BeziqueIcon1024.png"
