@@ -41,13 +41,11 @@ SOURCES += main.cpp \
     beziquematch.cpp \
     aiendplay.cpp \
     aievaluate.cpp \
-    aiplayer_copy.cpp \
     beziqueDeck.cpp \
     beziquehand.cpp \
     beziquematch.cpp \
     card.cpp \
     gamedata.cpp \
-    gamedataBad.cpp \
     gamestate.cpp \
     main.cpp \
     player.cpp \

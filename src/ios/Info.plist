@@ -12,25 +12,6 @@
 	<string>BeziqueIcon1024.png</string>
 	<key>CFBundleIconName</key>
 	<string></string>
-	<key>CFBundleIcons</key>
-	<dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>BeziqueIcon120.png</string>
-				<string>BeziqueIcon152.png</string>
-				<string>BeziqueIcon167.png</string>
-				<string>BeziqueIcon512.png</string>
-				<string>BeziqueIcon76.png</string>
-				<string>BeziqueIcon1024.png</string>
-				<string>Icon-76.png</string>
-				<string>Icon-167.png</string>
-				<string>Icon-76@2x.png</string>
-				<string>Icon-60@2x.png</string>
-			</array>
-		</dict>
-	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.sriep.bezique</string>
 	<key>CFBundleName</key>
